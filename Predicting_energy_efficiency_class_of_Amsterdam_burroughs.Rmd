@@ -1,0 +1,255 @@
+---
+title: "Predicting energy efficiency class of Amsterdam burroughs"
+author: "Elisabeth"
+date: "12/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+# download location of the data
+linkCSV <- "https://e85bcf2124fb4437b1bc6eb75dfc3abf.objectstore.eu/dcatd/adc68b2ed20d42279ebd7a5fa6ef2584"
+
+library(tidyverse)
+
+color_scale_E <- c("chartreuse1", "chartreuse4", "yellow", "darkorange", "red1", "red4", "purple4")
+color_scale_4 <- c("chartreuse1", "yellow", "darkorange", "red1")
+```
+
+```{r read data}
+# read data
+bbga_raw <- read.csv2(linkCSV)
+
+## transform data
+bbga <- pivot_wider(bbga_raw, names_from = variabele, values_from = waarde)
+
+## Read LUT
+bbgaLUT <- read_csv2("data_raw/bbgaLUT.csv")
+
+## merge bbga & LUT
+bbga <- merge(bbgaLUT,bbga)
+
+## filter for wijken and jaren
+bbga2020 <- bbga %>% filter(niveaunaam=='Wijken') %>%
+  filter(jaar >2000 & jaar <2021) 
+
+## change class when appropriate
+bbga2020[6:827] <- sapply(bbga2020[6:827],as.numeric)
+
+## Read data verbruik
+energylabels <- read_csv2("data_raw/energielabels_wijken.csv")
+
+## merge the CBS and BBGA data
+bbga2020energylabels <- merge(energylabels, bbga2020, by.x = c("wijken_2020","jaar"), by.y = c("gebiednaam","jaar"))
+```
+
+```{r clean and select}
+## in the energylabel variables NA means 0
+bbga2020energylabels[, 3:9][is.na(bbga2020energylabels[, 3:9])] <- 0
+
+## first selection, based on demographic characteristics and property ownership
+labels <-
+  bbga2020energylabels %>%
+  rename(wijken = wijken_2020) %>%
+  dplyr::select(wijken, jaar, woningen_met_geldig_energielabel_a_t_m_a:woningen_met_geldig_energielabel_g, 
+         ends_with("_P") & starts_with("BEV"),
+         WCORHUUR_P, WPARTHUUR_P, WKOOP_P)
+
+# deselect surplus variables
+labels <- labels %>%
+  dplyr::select(-BEVINST_P, -BEVPOTBBV15_64_P, -BEVPOTBBV15_74_P,
+         -BEVNSTEDELING_P, -BEVMUTNL_P, -BEVMUTTOT_P,
+         -BEV0_3_P, -BEV65PLUS_P, -BEV4_12_P, -BEV0_17_P,
+         -BEV0_18_P, -BEV18_26_P, -BEV27_65_P, -BEV66PLUS_P, 
+         -BEV75PLUS_P, -BEV80PLUS_P, -BEV17AUTO_P, -BEV18_22NL_P,
+         -BEV23_39NL_P, -BEV40_64NL_P, -BEV65_79NL_P, -BEV80PLUSNL_P,
+         -BEV17W_P, -BEV18_22W_P, -BEV23_39W_P, -BEV40_64W_P,
+         -BEV65_79W_P, -BEV80PLUSW_P, -BEV17NW_P, -BEV18_22NW_P, 
+         -BEV23_39NW_P, -BEV40_64NW_P, -BEV65_79NW_P, -BEV80PLUSNW_P, 
+         -BEVNW_P, -BEVHHMKIND_P, -BEVMAN_P, -BEVVROUW_P)
+
+# translate feature names to English
+names(labels) <- c("burrough", "year", "label_A", "label_B", "label_C", "label_D", "label_E", "label_F", "label_G",
+                   "surinam", "antillian", "turkish", "maroccan", "other_not_western", "western", 
+                   "indigenous_dutch", "education_basic", "education_medior", "education_high",
+                   "single_parent", "living_alone", "pair_no_kids", "pair_with_kids", "household_other",
+                   "over_80_living_alone", "rental_corp", "rental_priv", "self_owned")
+
+## add a feature for total number of valid energy labels
+labels <- 
+  labels %>%
+  mutate(n_labels = select(., label_A:label_G) %>% 
+           rowSums(na.rm = TRUE)) %>%
+  select(burrough, year, n_labels, everything()) %>%
+  filter(n_labels > 100) 
+
+# change the number of energy labels per class in a percentage
+temp<-labels
+for(i in 1:nrow(temp))
+  for(j in 4:10)
+    temp[i,j]=round(temp[i,j]/temp$n_labels[i],2)
+labels<-temp
+
+# deduct which label class is most dominant
+temp$indexOfMax <- apply(temp[4:10], 1, which.max)
+temp$colName <- str_sub(colnames(temp[4:10])[temp$indexOfMax],-1,-1)
+
+labels$modal_label <- temp$colName
+```
+
+
+```{r clean and select}
+# bar plot with total number per energy label class.
+labels %>%
+  ggplot(aes(x=modal_label)) +
+  geom_bar() +
+  theme_minimal()
+```
+
+```{r}
+# voeg merge modal_label to 4 classes ( A&B, C, D, and E,F&G )
+labels <- labels %>%
+  mutate(label_cat_4 = as.factor(
+                          ifelse(modal_label == "A", "AB",
+                               ifelse(labels$modal_label == "B", "AB",
+                                      ifelse(labels$modal_label == "C", "C",
+                                             ifelse(labels$modal_label == "D", "D", "EFG"))))))
+
+labels %>%
+  group_by(label_cat_4) %>%
+  summarise(n = n(), p = n()/nrow(labels))
+
+labels %>%
+  group_by(year) %>%
+  summarise(n = n(), p = n()/nrow(labels))
+```
+
+```{r}
+labels %>%
+  mutate(label_AB = label_A + label_B ) %>%
+  ggplot(aes(x=year, y=label_AB ) ) +
+  geom_smooth(method = "lm") +
+  geom_point(aes(color= as.factor(burrough))) +
+  theme(legend.position = "none") +
+  scale_color_viridis_d()
+```
+
+```{r}
+# split 
+library(tidymodels)
+set.seed(123)
+labels_split <- labels %>%
+  initial_split(strata = label_cat_4)
+
+labels_train <- training(labels_split)
+labels_test <- testing(labels_split)
+
+set.seed(234)
+labels_folds <- bootstraps(labels_train, strata = label_cat_4, times = 50)
+labels_folds
+```
+
+```{r}
+xgb_rec <-
+  recipe(label_cat_4 ~ ., data = labels_train) %>%
+  update_role(burrough, year, n_labels, label_A:label_G, modal_label,
+              new_role = "id" ) %>%
+  step_impute_median(all_predictors()) %>%
+  step_corr(all_predictors()) %>%
+  step_nzv(all_predictors())
+
+xgb_rec
+
+xgb_spec <-
+  boost_tree(
+    trees = 1000,
+    tree_depth = tune(),
+    min_n = tune(),
+    mtry = tune(),
+    sample_size = tune(),
+    learn_rate = tune()
+  ) %>%
+  set_engine("xgboost") %>%
+  set_mode("classification")
+
+xgb_wf <- workflow(xgb_rec, xgb_spec)
+
+set.seed(123)
+xgb_grid <-
+  grid_max_entropy(
+    tree_depth(c(5L, 10L)),
+    min_n(c(10L, 40L)),
+    mtry(c(5L, 10L)),
+    sample_prop(c(0.5, 1.0)),
+    learn_rate(c(-2, -1)),
+    size = 50
+  )
+
+xgb_grid
+
+library(finetune)
+doParallel::registerDoParallel()
+
+set.seed(234)
+xgb_res <-
+  tune_race_anova(
+    xgb_wf,
+    labels_folds,
+    grid = xgb_grid,
+    metrics = metric_set(mn_log_loss),
+    control = control_race(verbose_elim = TRUE)
+  )
+
+xgb_res
+
+plot_race(xgb_res)
+```
+
+
+```{r}
+show_best(xgb_res)
+
+xgb_last <-
+  xgb_wf %>%
+  finalize_workflow(select_best(xgb_res, "mn_log_loss")) %>%
+  last_fit(labels_split)
+
+xgb_last
+
+collect_predictions(xgb_last) 
+
+collect_predictions(xgb_last) %>%
+  mn_log_loss(label_cat_4, '.pred_AB':'.pred_EFG')
+
+collect_predictions(xgb_last) %>%
+  conf_mat(label_cat_4, .pred_class) %>%
+  autoplot()
+```
+
+```{r}
+collect_predictions(xgb_last) %>%
+  group_by(label_cat_4) %>%
+  mutate( correct = ifelse(label_cat_4 == .pred_class,1,0),
+          n_correct = sum(correct),
+          n_class = n() ) %>%
+  summarize(accuracy_within_class = n_correct/n_class) %>%
+  unique()
+```
+```{r}
+collect_predictions(xgb_last) %>%
+  roc_curve(label_cat_4, '.pred_AB':'.pred_EFG') %>%
+  ggplot(aes(1 - specificity, sensitivity, color = .level)) +
+  geom_abline(lty = 2, color = "gray80", size = 1.5) +
+  geom_path(alpha = 0.8, size = 1.2) +
+  coord_equal() +
+  labs(color = NULL) +
+  scale_colour_manual(values = color_scale_4)
+```
+
+
+```{r}
+library(vip)
+extract_workflow(xgb_last) %>%
+  extract_fit_parsnip() %>%
+  vip(geom = "point", num_features = 15)
+```
