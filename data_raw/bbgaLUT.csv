@@ -1,0 +1,1145 @@
+niveau;niveaunaam;gebiedcode15;gebiednaam
+1;Amsterdam;STAD;Amsterdam
+2;Stadsdelen;A;Centrum
+2;Stadsdelen;B;Westpoort
+2;Stadsdelen;E;West
+2;Stadsdelen;F;Nieuw-West
+2;Stadsdelen;K;Zuid
+2;Stadsdelen;M;Oost
+2;Stadsdelen;N;Noord
+2;Stadsdelen;T;Zuidoost
+2;Stadsdelen;Z;onbekend
+3;22 gebieden;DX01;Centrum-West
+3;22 gebieden;DX02;Centrum-Oost
+3;22 gebieden;DX03;Westerpark
+3;22 gebieden;DX04;Bos en Lommer
+3;22 gebieden;DX05;Oud-West, De Baarsjes
+3;22 gebieden;DX06;Geuzenveld, Slotermeer, Sloterdijken
+3;22 gebieden;DX07;Osdorp
+3;22 gebieden;DX08;De Aker, Sloten, Nieuw-Sloten
+3;22 gebieden;DX09;Slotervaart
+3;22 gebieden;DX10;Oud-Zuid
+3;22 gebieden;DX11;Buitenveldert, Zuidas
+3;22 gebieden;DX12;De Pijp, Rivierenbuurt
+3;22 gebieden;DX13;Oud-Oost
+3;22 gebieden;DX14;Indische Buurt, Oostelijk Havengebied
+3;22 gebieden;DX15;Watergraafsmeer
+3;22 gebieden;DX16;IJburg, Zeeburgereiland
+3;22 gebieden;DX17;Noord-West
+3;22 gebieden;DX18;Oud-Noord
+3;22 gebieden;DX19;Noord-Oost
+3;22 gebieden;DX20;Bijlmer-Centrum, Amstel III
+3;22 gebieden;DX21;Bijlmer-Oost
+3;22 gebieden;DX22;Gaasperdam, Driemond
+3;22 gebieden;ZX99;buiten beschouwing
+4;Wijken;A00;Burgwallen-Oude Zijde
+4;Wijken;A01;Burgwallen-Nieuwe Zijde
+4;Wijken;A02;Grachtengordel-West
+4;Wijken;A03;Grachtengordel-Zuid
+4;Wijken;A04;Nieuwmarkt/Lastage
+4;Wijken;A05;Haarlemmerbuurt
+4;Wijken;A06;Jordaan
+4;Wijken;A07;De Weteringschans
+4;Wijken;A08;Weesperbuurt/Plantage
+4;Wijken;A09;Oostelijke Eilanden/Kadijken
+4;Wijken;B10;Westelijk Havengebied
+4;Wijken;E12;Houthavens
+4;Wijken;E13;Spaarndammer- en Zeeheldenbuurt
+4;Wijken;E14;Staatsliedenbuurt
+4;Wijken;E15;Centrale Markt
+4;Wijken;E16;Frederik Hendrikbuurt
+4;Wijken;E17;Da Costabuurt
+4;Wijken;E18;Kinkerbuurt
+4;Wijken;E19;Van Lennepbuurt
+4;Wijken;E20;Helmersbuurt
+4;Wijken;E21;Overtoomse Sluis
+4;Wijken;E22;Vondelbuurt
+4;Wijken;E36;Sloterdijk
+4;Wijken;E37;Landlust
+4;Wijken;E38;Erasmuspark
+4;Wijken;E39;De Kolenkit
+4;Wijken;E40;Geuzenbuurt
+4;Wijken;E41;Van Galenbuurt
+4;Wijken;E42;Hoofdweg e.o.
+4;Wijken;E43;Westindische Buurt
+4;Wijken;E75;ChassÃ¯Â¿Â½buurt
+4;Wijken;F11;Bedrijventerrein Sloterdijk
+4;Wijken;F76;Slotermeer-Noordoost
+4;Wijken;F77;Slotermeer-Zuidwest
+4;Wijken;F78;Geuzenveld
+4;Wijken;F79;Eendracht
+4;Wijken;F80;Lutkemeer/Ookmeer
+4;Wijken;F81;Osdorp-Oost
+4;Wijken;F82;Osdorp-Midden
+4;Wijken;F83;De Punt
+4;Wijken;F84;Middelveldsche Akerpolder
+4;Wijken;F85;Slotervaart Noord
+4;Wijken;F86;Overtoomse Veld
+4;Wijken;F87;Westlandgracht
+4;Wijken;F88;Sloter/Riekerpolder
+4;Wijken;F89;Slotervaart Zuid
+4;Wijken;K23;Zuidas
+4;Wijken;K24;Oude Pijp
+4;Wijken;K25;Nieuwe Pijp
+4;Wijken;K26;Zuid Pijp
+4;Wijken;K44;Hoofddorppleinbuurt
+4;Wijken;K45;Schinkelbuurt
+4;Wijken;K46;Willemspark
+4;Wijken;K47;Museumkwartier
+4;Wijken;K48;Stadionbuurt
+4;Wijken;K49;Apollobuurt
+4;Wijken;K52;Scheldebuurt
+4;Wijken;K53;IJselbuurt
+4;Wijken;K54;Rijnbuurt
+4;Wijken;K59;Prinses Irenebuurt e.o.
+4;Wijken;K90;Buitenveldert-West
+4;Wijken;K91;Buitenveldert-Oost
+4;Wijken;M27;Weesperzijde
+4;Wijken;M28;Oosterparkbuurt
+4;Wijken;M29;Dapperbuurt
+4;Wijken;M30;Transvaalbuurt
+4;Wijken;M31;Indische Buurt West
+4;Wijken;M32;Indische Buurt Oost
+4;Wijken;M33;Oostelijk Havengebied
+4;Wijken;M34;Zeeburgereiland/Nieuwe diep
+4;Wijken;M35;IJburg West
+4;Wijken;M50;IJburg Oost
+4;Wijken;M51;IJburg Zuid
+4;Wijken;M55;Frankendael
+4;Wijken;M56;Middenmeer
+4;Wijken;M57;Betondorp
+4;Wijken;M58;Omval/Overamstel
+4;Wijken;N60;Volewijck
+4;Wijken;N61;IJplein/Vogelbuurt
+4;Wijken;N62;Tuindorp Nieuwendam
+4;Wijken;N63;Tuindorp Buiksloot
+4;Wijken;N64;Nieuwendammerdijk/Buiksloterdijk
+4;Wijken;N65;Tuindorp Oostzaan
+4;Wijken;N66;Oostzanerwerf
+4;Wijken;N67;Kadoelen
+4;Wijken;N68;Waterlandpleinbuurt
+4;Wijken;N69;Buikslotermeer
+4;Wijken;N70;Banne Buiksloot
+4;Wijken;N71;Noordelijke IJ-oevers West
+4;Wijken;N72;Noordelijke IJ-oevers Oost
+4;Wijken;N73;Waterland
+4;Wijken;N74;Elzenhagen
+4;Wijken;T92;Amstel III/Bullewijk
+4;Wijken;T93;Bijlmer-Centrum (D,F,H)
+4;Wijken;T94;Bijlmer-Oost (E,G,K)
+4;Wijken;T95;Nellestein
+4;Wijken;T96;Holendrecht/Reigersbos
+4;Wijken;T97;Gein
+4;Wijken;T98;Driemond
+4;Wijken;Z99;buiten beschouwing
+5;Alternatieve buurtindeling 2015;AS01;Westelijke Eilanden
+5;Alternatieve buurtindeling 2015;AS02;Westerdok en IJdok
+5;Alternatieve buurtindeling 2015;AS03;Haarlemmerbuurt
+5;Alternatieve buurtindeling 2015;AS04;Westelijke Grachtengordel
+5;Alternatieve buurtindeling 2015;AS05;Noordelijke Jordaan
+5;Alternatieve buurtindeling 2015;AS06;Zuidelijke Jordaan
+5;Alternatieve buurtindeling 2015;AS07;Burgwallen Oude Zijde Noord
+5;Alternatieve buurtindeling 2015;AS08;Burgwallen Nieuwe Zijde
+5;Alternatieve buurtindeling 2015;AS09;Burgwallen Oude Zijde Zuid
+5;Alternatieve buurtindeling 2015;AS10;Leidsebuurt
+5;Alternatieve buurtindeling 2015;AS11;Weteringbuurt/Frederikspleinbuurt
+5;Alternatieve buurtindeling 2015;AS12;Zuidelijke Grachtengordel
+5;Alternatieve buurtindeling 2015;AS13;Rembrandtplein/Reguliersbuurt
+5;Alternatieve buurtindeling 2015;AS14;Oosterdokseiland
+5;Alternatieve buurtindeling 2015;AS15;Nieuwmarktbuurt
+5;Alternatieve buurtindeling 2015;AS16;Waterloopleinbuurt
+5;Alternatieve buurtindeling 2015;AS17;Oostelijke Eilanden
+5;Alternatieve buurtindeling 2015;AS18;Kadijken
+5;Alternatieve buurtindeling 2015;AS19;Plantagebuurt
+5;Alternatieve buurtindeling 2015;AS20;Weesperbuurt
+5;Alternatieve buurtindeling 2015;ES01;Houthaven
+5;Alternatieve buurtindeling 2015;ES02;Zeeheldenbuurt
+5;Alternatieve buurtindeling 2015;ES03;Spaarndammerbuurt
+5;Alternatieve buurtindeling 2015;ES04;Staatsliedenbuurt
+5;Alternatieve buurtindeling 2015;ES05;GWL-terrein
+5;Alternatieve buurtindeling 2015;ES06;Westerkwartier
+5;Alternatieve buurtindeling 2015;ES07;Frederik Hendrikbuurt
+5;Alternatieve buurtindeling 2015;ES08;Da Costabuurt
+5;Alternatieve buurtindeling 2015;ES09;Bellamybuurt
+5;Alternatieve buurtindeling 2015;ES10;Borgerbuurt
+5;Alternatieve buurtindeling 2015;ES11;Helmersbuurt
+5;Alternatieve buurtindeling 2015;ES12;Cremerbuurt
+5;Alternatieve buurtindeling 2015;ES13;Vondelparkbuurt Noord
+5;Alternatieve buurtindeling 2015;ES14;Oud Sloterdijk
+5;Alternatieve buurtindeling 2015;ES15;Landlust
+5;Alternatieve buurtindeling 2015;ES16;Gibraltarbuurt
+5;Alternatieve buurtindeling 2015;ES17;Gulden Winckelbuurt
+5;Alternatieve buurtindeling 2015;ES18;Erasmusparkbuurt
+5;Alternatieve buurtindeling 2015;ES19;Robert Scottbuurt
+5;Alternatieve buurtindeling 2015;ES20;Laan van Spartaan
+5;Alternatieve buurtindeling 2015;ES21;Kolenkitbuurt
+5;Alternatieve buurtindeling 2015;ES22;Geuzenbuurt
+5;Alternatieve buurtindeling 2015;ES23;ChassÃ¯Â¿Â½buurt
+5;Alternatieve buurtindeling 2015;ES24;Mercatorbuurt-Noord
+5;Alternatieve buurtindeling 2015;ES25;Mercatorbuurt-Zuid
+5;Alternatieve buurtindeling 2015;ES26;Postjesbuurt
+5;Alternatieve buurtindeling 2015;ES27;Sloterdijk I
+5;Alternatieve buurtindeling 2015;ES61;Marcantibuurt
+5;Alternatieve buurtindeling 2015;ES99;Westerpark
+5;Alternatieve buurtindeling 2015;FS11;Bedrijventerrein Sloterdijk
+5;Alternatieve buurtindeling 2015;FS76;Slotermeer-Noordoost
+5;Alternatieve buurtindeling 2015;FS77;Slotermeer-Zuidwest
+5;Alternatieve buurtindeling 2015;FS78;Geuzenveld
+5;Alternatieve buurtindeling 2015;FS79;de Eendracht
+5;Alternatieve buurtindeling 2015;FS80;Lutkemeer/Ookmeer
+5;Alternatieve buurtindeling 2015;FS81;Osdorp-Oost
+5;Alternatieve buurtindeling 2015;FS82;Osdorp-Midden
+5;Alternatieve buurtindeling 2015;FS83;De Punt
+5;Alternatieve buurtindeling 2015;FS84;Middelveldsche Akerpolder
+5;Alternatieve buurtindeling 2015;FS85;Slotervaart Noord
+5;Alternatieve buurtindeling 2015;FS86;Overtoomse Veld
+5;Alternatieve buurtindeling 2015;FS87;Westlandgracht
+5;Alternatieve buurtindeling 2015;FS88;Sloter/Riekerpolder
+5;Alternatieve buurtindeling 2015;FS89;Slotervaart Zuid
+5;Alternatieve buurtindeling 2015;KS23;Zuidas
+5;Alternatieve buurtindeling 2015;KS24;Oude Pijp
+5;Alternatieve buurtindeling 2015;KS25;Nieuwe Pijp
+5;Alternatieve buurtindeling 2015;KS26;Zuid Pijp
+5;Alternatieve buurtindeling 2015;KS44;Hoofddorppleinbuurt
+5;Alternatieve buurtindeling 2015;KS45;Schinkelbuurt
+5;Alternatieve buurtindeling 2015;KS46;Willemspark
+5;Alternatieve buurtindeling 2015;KS47;Museumkwartier
+5;Alternatieve buurtindeling 2015;KS48;Stadionbuurt
+5;Alternatieve buurtindeling 2015;KS49;Apollobuurt
+5;Alternatieve buurtindeling 2015;KS52;Scheldebuurt
+5;Alternatieve buurtindeling 2015;KS53;IJselbuurt
+5;Alternatieve buurtindeling 2015;KS54;Rijnbuurt
+5;Alternatieve buurtindeling 2015;KS59;Prinses Irenebuurt e.o.
+5;Alternatieve buurtindeling 2015;KS90;Buitenveldert-West
+5;Alternatieve buurtindeling 2015;KS91;Buitenveldert-Oost
+5;Alternatieve buurtindeling 2015;MS01;Weesperzijde
+5;Alternatieve buurtindeling 2015;MS02;Oosterparkbuurt
+5;Alternatieve buurtindeling 2015;MS03;Dapperbuurt
+5;Alternatieve buurtindeling 2015;MS04;Oostpoort
+5;Alternatieve buurtindeling 2015;MS05;Transvaalbuurt
+5;Alternatieve buurtindeling 2015;MS06;Omval-Van der Kunbuurt
+5;Alternatieve buurtindeling 2015;MS07;Don Bosco
+5;Alternatieve buurtindeling 2015;MS08;Julianapark
+5;Alternatieve buurtindeling 2015;MS09;Amsteldorp
+5;Alternatieve buurtindeling 2015;MS10;Tuindorp Frankendael
+5;Alternatieve buurtindeling 2015;MS11;Middenmeer
+5;Alternatieve buurtindeling 2015;MS12;Park de Meer
+5;Alternatieve buurtindeling 2015;MS13;Science Park
+5;Alternatieve buurtindeling 2015;MS14;Betondorp
+5;Alternatieve buurtindeling 2015;MS15;Weespertrekvaart
+5;Alternatieve buurtindeling 2015;MS16;Amstelkwartier
+5;Alternatieve buurtindeling 2015;MS17;Java eiland
+5;Alternatieve buurtindeling 2015;MS18;KNSM eiland
+5;Alternatieve buurtindeling 2015;MS19;Oostelijke Handelskade
+5;Alternatieve buurtindeling 2015;MS20;Sporenburg
+5;Alternatieve buurtindeling 2015;MS21;Borneo
+5;Alternatieve buurtindeling 2015;MS22;Cruquius
+5;Alternatieve buurtindeling 2015;MS23;Timorpleinbuurt
+5;Alternatieve buurtindeling 2015;MS24;Makassarpleinbuurt
+5;Alternatieve buurtindeling 2015;MS25;Ambonpleinbuurt
+5;Alternatieve buurtindeling 2015;MS26;Sumatraplantsoenbuurt
+5;Alternatieve buurtindeling 2015;MS27;Zeeburgereiland
+5;Alternatieve buurtindeling 2015;MS28;Steigereiland
+5;Alternatieve buurtindeling 2015;MS29;Rieteilanden-West
+5;Alternatieve buurtindeling 2015;MS30;Haveneiland-West
+5;Alternatieve buurtindeling 2015;MS31;Haveneiland-Oost
+5;Alternatieve buurtindeling 2015;NS60;Volewijck
+5;Alternatieve buurtindeling 2015;NS61;IJplein/Vogelbuurt
+5;Alternatieve buurtindeling 2015;NS62;Tuindorp Nieuwendam
+5;Alternatieve buurtindeling 2015;NS63;Tuindorp Buiksloot
+5;Alternatieve buurtindeling 2015;NS64;Nieuwendammerdijk/Buiksloterdijk
+5;Alternatieve buurtindeling 2015;NS65;Tuindorp Oostzaan
+5;Alternatieve buurtindeling 2015;NS66;Oostzanerwerf
+5;Alternatieve buurtindeling 2015;NS67;Kadoelen
+5;Alternatieve buurtindeling 2015;NS68;Waterlandpleinbuurt
+5;Alternatieve buurtindeling 2015;NS69;Buikslotermeer
+5;Alternatieve buurtindeling 2015;NS70;Banne Buiksloot
+5;Alternatieve buurtindeling 2015;NS71;Noordelijke IJ-oevers West
+5;Alternatieve buurtindeling 2015;NS72;Noordelijke IJ-oevers Oost
+5;Alternatieve buurtindeling 2015;NS73;Waterland
+5;Alternatieve buurtindeling 2015;NS74;Elzenhagen
+5;Alternatieve buurtindeling 2015;TS01;E/G-buurt Noord
+5;Alternatieve buurtindeling 2015;TS02;K-buurt West
+5;Alternatieve buurtindeling 2015;TS03;K-buurt Midden
+5;Alternatieve buurtindeling 2015;TS04;G/K-buurt Oost
+5;Alternatieve buurtindeling 2015;TS05;D-buurt
+5;Alternatieve buurtindeling 2015;TS06;F-buurt
+5;Alternatieve buurtindeling 2015;TS07;Vogeltjeswei/Nelson Mandelapark
+5;Alternatieve buurtindeling 2015;TS08;H-buurt
+5;Alternatieve buurtindeling 2015;TS09;Amsterdamse Poort/Centrumgebied
+5;Alternatieve buurtindeling 2015;TS10;Holendrecht-West
+5;Alternatieve buurtindeling 2015;TS11;Holendrecht-Oost
+5;Alternatieve buurtindeling 2015;TS12;Reigersbos
+5;Alternatieve buurtindeling 2015;TS13;Gein
+5;Alternatieve buurtindeling 2015;TS14;Nellestein
+5;Alternatieve buurtindeling 2015;TS15;Amstel III (excl. Arena)
+5;Alternatieve buurtindeling 2015;TS16;Driemond
+5;Alternatieve buurtindeling 2015;TS17;Arenagebied
+5;Alternatieve buurtindeling 2015;TS18;Venserpolder
+5;Alternatieve buurtindeling 2015;ZS99;buiten beschouwing
+6;Rayons 2015;AA02;Gebied West
+6;Rayons 2015;AA03;Gebied Zuid
+6;Rayons 2015;AA04;Gebied Oost
+6;Rayons 2015;AA11;Gebied 1011
+6;Rayons 2015;AA12;Gebied 1012
+6;Rayons 2015;EA01;Westerpark
+6;Rayons 2015;EA02;Oud-West
+6;Rayons 2015;EA03;Bos en Lommer
+6;Rayons 2015;EA04;De Baarsjes
+6;Rayons 2015;FA01;Slotervaart Zuid
+6;Rayons 2015;FA02;Slotervaart Noord
+6;Rayons 2015;FA03;Slotermeer Oost
+6;Rayons 2015;FA04;Slotermeer West
+6;Rayons 2015;FA05;Geuzenveld
+6;Rayons 2015;FA06;Nieuw-West Midden
+6;Rayons 2015;FA07;Osdorp West
+6;Rayons 2015;FA08;De Aker
+6;Rayons 2015;FA09;Sloten en Nieuw Sloten
+6;Rayons 2015;FA10;Bedrijventerrein Sloterdijk
+6;Rayons 2015;KA01;De Pijp
+6;Rayons 2015;KA02;Rivierenbuurt
+6;Rayons 2015;KA03;Oud-Zuid
+6;Rayons 2015;KA04;Buitenveldert
+6;Rayons 2015;KA05;Zuidas
+6;Rayons 2015;MA01;Oud-Oost
+6;Rayons 2015;MA02;Watergraafsmeer
+6;Rayons 2015;MA03;Oostelijk Havengebied
+6;Rayons 2015;MA04;Indische Buurt
+6;Rayons 2015;MA05;IJburg / Zeeburgereiland
+6;Rayons 2015;"NA60";Volewijck
+6;Rayons 2015;"NA61";IJplein/Vogelbuurt
+6;Rayons 2015;"NA62";Tuindorp Nieuwendam
+6;Rayons 2015;"NA63";Tuindorp Buiksloot
+6;Rayons 2015;"NA64";Nieuwendammerdijk/Buiksloterdijk
+6;Rayons 2015;"NA65";Tuindorp Oostzaan
+6;Rayons 2015;"NA66";Oostzanerwerf
+6;Rayons 2015;"NA67";Kadoelen
+6;Rayons 2015;"NA68";Waterlandpleinbuurt
+6;Rayons 2015;"NA69";Buikslotermeer
+6;Rayons 2015;"NA70";Banne Buiksloot
+6;Rayons 2015;"NA71";Noordelijke IJ-oevers West
+6;Rayons 2015;"NA72";Noordelijke IJ-oevers Oost
+6;Rayons 2015;"NA73";Waterland
+6;Rayons 2015;"NA74";Elzenhagen
+6;Rayons 2015;TA01;EGK-buurt
+6;Rayons 2015;TA02;Venserpolder
+6;Rayons 2015;TA03;DF-buurt + Vogeltjeswei
+6;Rayons 2015;TA04;H-buurt
+6;Rayons 2015;TA05;Holendrecht
+6;Rayons 2015;TA06;Reigersbos + Gein + Nellestein
+6;Rayons 2015;TA08;Amsterdamse Poort/Centrumgebied
+6;Rayons 2015;TA09;Amstel III
+6;Rayons 2015;TA10;Driemond
+6;Rayons 2015;ZA99;buiten beschouwing
+7;27 gebieden;DY01;Centrum-West
+7;27 gebieden;DY02;Centrum-Oost
+7;27 gebieden;DY03;Westerpark
+7;27 gebieden;DY04;Bos en Lommer
+7;27 gebieden;DY05;Oud-West
+7;27 gebieden;DY06;De Baarsjes
+7;27 gebieden;DY07;Slotermeer-Sloterdijken
+7;27 gebieden;DY08;Geuzenveld
+7;27 gebieden;DY09;Osdorp
+7;27 gebieden;DY10;De Aker, Sloten en Nieuw Sloten
+7;27 gebieden;DY11;Slotervaart
+7;27 gebieden;DY12;Oud-Zuid-West
+7;27 gebieden;DY13;Oud-Zuid-Oost
+7;27 gebieden;DY14;Buitenveldert/Zuidas
+7;27 gebieden;DY15;De Pijp
+7;27 gebieden;DY16;Rivierenbuurt
+7;27 gebieden;DY17;Oud-Oost
+7;27 gebieden;DY18;Indische Buurt
+7;27 gebieden;DY19;Oostelijk Havengebied
+7;27 gebieden;DY20;Watergraafsmeer
+7;27 gebieden;DY21;IJburg/Zeeburgereiland
+7;27 gebieden;DY22;Noord West
+7;27 gebieden;DY23;Oud Noord
+7;27 gebieden;DY24;Noord Oost
+7;27 gebieden;DY25;Bijlmer-Centrum
+7;27 gebieden;DY26;Bijlmer-Oost
+7;27 gebieden;DY27;Gaasperdam/Driemond
+7;27 gebieden;ZY99;buiten beschouwing
+8;Buurten;A00a;Kop Zeedijk
+8;Buurten;A00b;Oude Kerk e.o.
+8;Buurten;A00c;Burgwallen Oost
+8;Buurten;A00d;Nes e.o.
+8;Buurten;A00e;BG-terrein e.o.
+8;Buurten;A01a;Stationsplein e.o.
+8;Buurten;A01b;Hemelrijk
+8;Buurten;A01c;Nieuwendijk Noord
+8;Buurten;A01d;Spuistraat Noord
+8;Buurten;A01e;Nieuwe Kerk e.o.
+8;Buurten;A01f;Spuistraat Zuid
+8;Buurten;A01g;Begijnhofbuurt
+8;Buurten;A01h;Kalverdriehoek
+8;Buurten;A02a;Langestraat e.o.
+8;Buurten;A02b;Leliegracht e.o.
+8;Buurten;A02c;Felix Meritisbuurt
+8;Buurten;A02d;Leidsegracht Noord
+8;Buurten;A03a;Spiegelbuurt
+8;Buurten;A03b;Gouden Bocht
+8;Buurten;A03c;Van Loonbuurt
+8;Buurten;A03d;Amstelveldbuurt
+8;Buurten;A03e;Rembrandtpleinbuurt
+8;Buurten;A03f;Reguliersbuurt
+8;Buurten;A03g;Leidsegracht Zuid
+8;Buurten;A04a;Oosterdokseiland
+8;Buurten;A04b;Scheepvaarthuisbuurt
+8;Buurten;A04c;Rapenburg
+8;Buurten;A04d;Lastage
+8;Buurten;A04e;Nieuwmarkt
+8;Buurten;A04f;Uilenburg
+8;Buurten;A04g;Valkenburg
+8;Buurten;A04h;Zuiderkerkbuurt
+8;Buurten;A04i;Waterloopleinbuurt
+8;Buurten;A05a;Westerdokseiland
+8;Buurten;A05b;Haarlemmerbuurt Oost
+8;Buurten;A05c;Haarlemmerbuurt West
+8;Buurten;A05d;Westelijke Eilanden
+8;Buurten;A05f;Planciusbuurt Noord
+8;Buurten;A05g;Planciusbuurt Zuid
+8;Buurten;A06a;Driehoekbuurt
+8;Buurten;A06c;Bloemgrachtbuurt
+8;Buurten;A06d;Marnixbuurt Noord
+8;Buurten;A06e;Zaagpoortbuurt
+8;Buurten;A06f;Marnixbuurt Midden
+8;Buurten;A06g;Elandsgrachtbuurt
+8;Buurten;A06h;Passeerdersgrachtbuurt
+8;Buurten;A06i;Groenmarktkadebuurt
+8;Buurten;A06j;Marnixbuurt Zuid
+8;Buurten;A06k;Anjeliersbuurt Noord
+8;Buurten;A06l;Anjeliersbuurt Zuid
+8;Buurten;A07a;Leidsebuurt Noordwest
+8;Buurten;A07b;Leidsebuurt Zuidwest
+8;Buurten;A07c;Leidsebuurt Noordoost
+8;Buurten;A07d;Leidsebuurt Zuidoost
+8;Buurten;A07e;Weteringbuurt
+8;Buurten;A07f;Den Texbuurt
+8;Buurten;A07g;Utrechtsebuurt Zuid
+8;Buurten;A07h;Frederikspleinbuurt
+8;Buurten;A08a;Weesperbuurt
+8;Buurten;A08b;Sarphatistrook
+8;Buurten;A08d;de Plantage
+8;Buurten;A08e;Alexanderplein e.o.
+8;Buurten;A09a;Marine-Etablissement
+8;Buurten;A09b;Kattenburg
+8;Buurten;A09c;Wittenburg
+8;Buurten;A09d;Oostenburg
+8;Buurten;A09e;Czaar Peterbuurt
+8;Buurten;A09f;Het Funen
+8;Buurten;A09h;Kazernebuurt
+8;Buurten;A09i;Kadijken
+8;Buurten;B10a;Coenhaven/Mercuriushaven
+8;Buurten;B10b;Alfa-driehoek
+8;Buurten;B10c;Petroleumhaven
+8;Buurten;B10d;Westhaven Noord
+8;Buurten;B10e;Vervoerscentrum
+8;Buurten;B10f;Amerikahaven
+8;Buurten;B10g;Afrikahaven
+8;Buurten;B10h;Westhaven Zuid
+8;Buurten;E12a;Houthavens West
+8;Buurten;E12b;Houthavens Oost
+8;Buurten;E13a;Zeeheldenbuurt
+8;Buurten;E13b;Spaarndammerbuurt Noordoost
+8;Buurten;E13c;Spaarndammerbuurt Zuidoost
+8;Buurten;E13d;Spaarndammerbuurt Zuidwest
+8;Buurten;E13e;Spaarndammerbuurt Midden
+8;Buurten;E13f;Spaarndammerbuurt Noordwest
+8;Buurten;E13g;Westergasfabriek
+8;Buurten;E13h;Overbraker Binnenpolder
+8;Buurten;E14a;De Wittenbuurt Noord
+8;Buurten;E14b;De Wittenbuurt Zuid
+8;Buurten;E14c;Staatsliedenbuurt Noordoost
+8;Buurten;E14d;Fannius Scholtenbuurt
+8;Buurten;E14e;Westerstaatsman
+8;Buurten;E14f;Buyskade e.o.
+8;Buurten;E15a;Ecowijk
+8;Buurten;E15b;Markthallen
+8;Buurten;E15c;Bedrijvencentrum Westerkwartier
+8;Buurten;E15d;Marcanti
+8;Buurten;E16a;Frederik Hendrikbuurt Noord
+8;Buurten;E16b;Frederik Hendrikbuurt Zuidoost
+8;Buurten;E16c;Frederik Hendrikbuurt Zuidwest
+8;Buurten;E17a;Da Costabuurt Noord
+8;Buurten;E18a;Bellamybuurt Noord
+8;Buurten;E18b;Bellamybuurt Zuid
+8;Buurten;E19a;Da Costabuurt Zuid
+8;Buurten;E19b;Borgerbuurt
+8;Buurten;E19c;Lootsbuurt
+8;Buurten;E20a;Helmersbuurt Oost
+8;Buurten;E20b;WG-terrein
+8;Buurten;E20c;Cremerbuurt Oost
+8;Buurten;E21a;Cremerbuurt West
+8;Buurten;E21b;Vondelparkbuurt West
+8;Buurten;E22a;Vondelparkbuurt Oost
+8;Buurten;E22b;Vondelparkbuurt Midden
+8;Buurten;E36a;Woon- en groengebied Sloterdijk
+8;Buurten;E36b;Bedrijventerrein Sloterdijk I
+8;Buurten;E37a;Bedrijventerrein Landlust
+8;Buurten;E37c;Bosleeuw
+8;Buurten;E37d;Landlust Zuid
+8;Buurten;E37e;Erasmusparkbuurt Oost
+8;Buurten;E37f;Gibraltarbuurt
+8;Buurten;E37g;Landlust Noord
+8;Buurten;E38c;Erasmusparkbuurt West
+8;Buurten;E38d;Robert Scottbuurt Oost
+8;Buurten;E39a;Robert Scottbuurt West
+8;Buurten;E39b;Laan van Spartaan
+8;Buurten;E39c;Kolenkitbuurt Zuid
+8;Buurten;E39d;Kolenkitbuurt Noord
+8;Buurten;E40a;Geuzenhofbuurt
+8;Buurten;E40b;Trompbuurt
+8;Buurten;E40c;Pieter van der Doesbuurt
+8;Buurten;E41a;John Franklinbuurt
+8;Buurten;E41b;Jan Maijenbuurt
+8;Buurten;E41c;Orteliusbuurt Noord
+8;Buurten;E41d;Mercatorpark
+8;Buurten;E42a;Balboaplein e.o.
+8;Buurten;E42b;Columbusplein e.o.
+8;Buurten;E42c;Orteliusbuurt Midden
+8;Buurten;E42d;Orteliusbuurt Zuid
+8;Buurten;E43a;Paramariboplein e.o.
+8;Buurten;E43b;Postjeskade e.o.
+8;Buurten;E75a;Kortenaerkwartier
+8;Buurten;E75b;Filips van Almondekwartier
+8;Buurten;E75c;De Wester Quartier
+8;Buurten;E75d;Van Brakelkwartier
+8;Buurten;F11a;Sloterdijk II
+8;Buurten;F11c;Sloterdijk III Oost
+8;Buurten;F11d;Sloterdijk III West
+8;Buurten;F11e;De Heining
+8;Buurten;F11f;Teleport
+8;Buurten;F11h;Bretten Oost
+8;Buurten;F11j;Bretten West
+8;Buurten;F76a;Buurt 3
+8;Buurten;F76b;Buurt 2
+8;Buurten;F77a;Slotermeer Zuid
+8;Buurten;F77b;Noordoever Sloterplas
+8;Buurten;F77c;Buurt 4 Oost
+8;Buurten;F77d;Buurt 5  Noord
+8;Buurten;F77e;Sloterpark
+8;Buurten;F77f;Buurt 5 Zuid
+8;Buurten;F78a;Buurt 6
+8;Buurten;F78b;Buurt 7
+8;Buurten;F78c;Buurt 8
+8;Buurten;F78d;Buurt 9
+8;Buurten;F78e;Eendrachtspark
+8;Buurten;F79a;Osdorper Binnenpolder
+8;Buurten;F79b;Buurt 10
+8;Buurten;F80a;Ookmeer
+8;Buurten;F80b;Osdorper Bovenpolder
+8;Buurten;F80c;Bedrijvenpark Lutkemeer
+8;Buurten;F81a;Wildeman
+8;Buurten;F81b;Meer en Oever
+8;Buurten;F81c;Osdorpplein e.o.
+8;Buurten;F81d;Calandlaan/Lelylaan
+8;Buurten;F81e;Osdorp Zuidoost
+8;Buurten;F82a;Osdorp Midden Noord
+8;Buurten;F82b;Osdorp Midden Zuid
+8;Buurten;F82c;Zuidwestkwadrant Osdorp Noord
+8;Buurten;F82d;Zuidwestkwadrant Osdorp Zuid
+8;Buurten;F83a;De Punt
+8;Buurten;F83b;Bedrijvencentrum Osdorp
+8;Buurten;F84a;Middelveldsche Akerpolder
+8;Buurten;F84b;De Aker West
+8;Buurten;F84c;De Aker Oost
+8;Buurten;F85a;Oostoever Sloterplas
+8;Buurten;F85b;Emanuel van Meterenbuurt
+8;Buurten;F85c;Jacob Geelbuurt
+8;Buurten;F86a;Overtoomse Veld Noord
+8;Buurten;F86b;Overtoomse Veld Zuid
+8;Buurten;F86c;Rembrandtpark Noord
+8;Buurten;F86d;Rembrandtpark Zuid
+8;Buurten;F86e;Johan Jongkindbuurt
+8;Buurten;F86f;Lucas/Andreasziekenhuis e.o.
+8;Buurten;F87a;Koningin Wilhelminaplein
+8;Buurten;F87b;Andreasterrein
+8;Buurten;F87c;Delflandpleinbuurt Oost
+8;Buurten;F87d;Delflandpleinbuurt West
+8;Buurten;F87e;Riekerhaven
+8;Buurten;F87f;Schipluidenbuurt
+8;Buurten;F88a;Riekerpolder
+8;Buurten;F88b;Park Haagseweg
+8;Buurten;F88c;Nieuwe Meer
+8;Buurten;F88d;Sloterweg e.o.
+8;Buurten;F88e;Nieuw Sloten Noordwest
+8;Buurten;F88f;Nieuw Sloten Noordoost
+8;Buurten;F88g;BelgiÃ¯Â¿Â½plein e.o.
+8;Buurten;F88h;Nieuw Sloten Zuidwest
+8;Buurten;F88i;Nieuw Sloten Zuidoost
+8;Buurten;F88j;Dorp Sloten
+8;Buurten;F89a;Louis Chrispijnbuurt
+8;Buurten;F89b;Jacques Veldmanbuurt
+8;Buurten;F89c;Staalmanbuurt
+8;Buurten;F89d;Medisch Centrum Slotervaart
+8;Buurten;K23a;Zuidas Noord
+8;Buurten;K23b;RAI
+8;Buurten;K23c;VU-kwartier
+8;Buurten;K23d;Zuidas Zuid
+8;Buurten;K23e;Vivaldi
+8;Buurten;K24a;Hemonybuurt
+8;Buurten;K24b;Gerard Doubuurt
+8;Buurten;K24c;Frans Halsbuurt
+8;Buurten;K24d;Hercules Seghersbuurt
+8;Buurten;K24e;Sarphatiparkbuurt
+8;Buurten;K25a;Willibrordusbuurt
+8;Buurten;K25b;Van der Helstpleinbuurt
+8;Buurten;K25c;Lizzy Ansinghbuurt
+8;Buurten;K25d;Cornelis Troostbuurt
+8;Buurten;K26a;Diamantbuurt
+8;Buurten;K26b;Burgemeester Tellegenbuurt Oost
+8;Buurten;K26c;Burgemeester Tellegenbuurt West
+8;Buurten;K44a;Surinamepleinbuurt
+8;Buurten;K44b;Westlandgrachtbuurt
+8;Buurten;K44c;Aalsmeerwegbuurt West
+8;Buurten;K44d;Aalsmeerwegbuurt Oost
+8;Buurten;K44e;Legmeerpleinbuurt
+8;Buurten;K44f;Bedrijventerrein Schinkel
+8;Buurten;K45a;Schinkelbuurt Noord
+8;Buurten;K45b;Schinkelbuurt Zuid
+8;Buurten;K46a;Valeriusbuurt Oost
+8;Buurten;K46b;Valeriusbuurt West
+8;Buurten;K46c;Willemsparkbuurt Noord
+8;Buurten;K46d;Vondelpark West
+8;Buurten;K47a;Johannnes Vermeerbuurt
+8;Buurten;K47b;P.C. Hooftbuurt
+8;Buurten;K47c;Concertgebouwbuurt
+8;Buurten;K47d;Cornelis Schuytbuurt
+8;Buurten;K47e;Banpleinbuurt
+8;Buurten;K47f;Hondecoeterbuurt
+8;Buurten;K47g;Harmoniehofbuurt
+8;Buurten;K47h;Museumplein
+8;Buurten;K47i;Vondelpark Oost
+8;Buurten;K47j;Duivelseiland
+8;Buurten;K48a;Bertelmanpleinbuurt
+8;Buurten;K48b;Marathonbuurt Oost
+8;Buurten;K48c;Marathonbuurt West
+8;Buurten;K48d;Olympisch Stadion e.o.
+8;Buurten;K48e;IJsbaanpad e.o.
+8;Buurten;K48f;Van Tuyllbuurt
+8;Buurten;K49a;Diepenbrockbuurt
+8;Buurten;K49b;Beethovenbuurt
+8;Buurten;K49c;Hiltonbuurt
+8;Buurten;K49d;Minervabuurt Noord
+8;Buurten;K49e;Minervabuurt Midden
+8;Buurten;K49f;Minervabuurt Zuid
+8;Buurten;K52a;Wielingenbuurt
+8;Buurten;K52b;Scheldebuurt West
+8;Buurten;K52c;Scheldebuurt Midden
+8;Buurten;K52d;Scheldebuurt Oost
+8;Buurten;K52g;Veluwebuurt
+8;Buurten;K52h;Kop Zuidas
+8;Buurten;K53a;IJselbuurt West
+8;Buurten;K53b;IJselbuurt Oost
+8;Buurten;K54a;Kromme Mijdrechtbuurt
+8;Buurten;K54b;Rijnbuurt Oost
+8;Buurten;K54c;Rijnbuurt Midden
+8;Buurten;K54d;Rijnbuurt West
+8;Buurten;K54e;Zorgvlied
+8;Buurten;K59a;Prinses Irenebuurt
+8;Buurten;K59b;Beatrixpark
+8;Buurten;K90a;Gelderlandpleinbuurt
+8;Buurten;K90c;Buitenveldert Midden Zuid
+8;Buurten;K90d;Buitenveldert Zuidwest
+8;Buurten;K90e;Amsterdamse Bos
+8;Buurten;K90i;Buitenveldert West Midden
+8;Buurten;K90j;Zuiderhof
+8;Buurten;K91a;De Klenckebuurt
+8;Buurten;K91b;Buitenveldert Oost Midden
+8;Buurten;K91c;Buitenveldert Zuidoost
+8;Buurten;K91d;Amstelpark
+8;Buurten;M27a;Swammerdambuurt
+8;Buurten;M27b;Weesperzijde Midden/Zuid
+8;Buurten;M27c;Parooldriehoek
+8;Buurten;M28a;Oosterparkbuurt Noordwest
+8;Buurten;M28b;Oosterpark
+8;Buurten;M28c;Oosterparkbuurt Zuidoost
+8;Buurten;M28d;Oosterparkbuurt Zuidwest
+8;Buurten;M29a;Dapperbuurt Noord
+8;Buurten;M29b;Dapperbuurt Zuid
+8;Buurten;M29c;Oostpoort
+8;Buurten;M30a;Transvaalbuurt West
+8;Buurten;M30b;Transvaalbuurt Oost
+8;Buurten;M31a;Noordwestkwadrant Indische Buurt Noord
+8;Buurten;M31b;Noordwestkwadrant Indische Buurt Zuid
+8;Buurten;M31c;Zuidwestkwadrant Indische Buurt
+8;Buurten;M32a;Noordoostkwadrant Indische Buurt
+8;Buurten;M32b;Zuidoostkwadrant Indische Buurt
+8;Buurten;M32c;Zeeburgerdijk Oost
+8;Buurten;M32d;Flevopark
+8;Buurten;M33a;Oostelijke Handelskade
+8;Buurten;M33b;Rietlanden
+8;Buurten;M33c;Java-eiland
+8;Buurten;M33d;KNSM-eiland
+8;Buurten;M33e;Sporenburg
+8;Buurten;M33f;Borneo
+8;Buurten;M33g;Entrepot-Noordwest
+8;Buurten;M33h;Architectenbuurt
+8;Buurten;M33i;Bedrijvengebied Veelaan
+8;Buurten;M33j;Bedrijvengebied Cruquiusweg
+8;Buurten;M33k;Bedrijvengebied Zeeburgerkade
+8;Buurten;M34a;Zeeburgereiland Noordwest
+8;Buurten;M34c;Zeeburgereiland Zuidoost
+8;Buurten;M34d;Zeeburgereiland Zuidwest
+8;Buurten;M34e;Nieuwe Diep/Diemerpark
+8;Buurten;M34f;RI Oost terrein
+8;Buurten;M34g;Zeeburgereiland Noordoost
+8;Buurten;M35a;Steigereiland Noord
+8;Buurten;M35b;Steigereiland Zuid
+8;Buurten;M35c;Haveneiland Zuidwest/Rieteiland West
+8;Buurten;M35e;Haveneiland Noordwest
+8;Buurten;M35f;Haveneiland Noordoost
+8;Buurten;M50d;Middeneiland Zuidwest
+8;Buurten;M50g;Centrumeiland
+8;Buurten;M51a;Rieteiland Oost
+8;Buurten;M51b;Haveneiland Oost
+8;Buurten;M51c;Haveneiland Noord
+8;Buurten;M55b;De Eenhoorn
+8;Buurten;M55c;Julianapark
+8;Buurten;M55d;Don Bosco
+8;Buurten;M55e;Frankendael
+8;Buurten;M55f;Tuindorp Amstelstation
+8;Buurten;M55g;De Wetbuurt
+8;Buurten;M55h;Tuindorp Frankendael
+8;Buurten;M55i;Van der Kunbuurt
+8;Buurten;M56a;Linnaeusparkbuurt
+8;Buurten;M56b;Middenmeer Noord
+8;Buurten;M56c;Middenmeer Zuid
+8;Buurten;M56d;Sportpark Middenmeer Zuid
+8;Buurten;M56e;Sportpark Middenmeer Noord
+8;Buurten;M56f;Park De Meer
+8;Buurten;M56g;Sportpark Voorland
+8;Buurten;M56h;Science Park Noord
+8;Buurten;M56i;Science Park Zuid
+8;Buurten;M57a;Betondorp
+8;Buurten;M57b;Nieuwe Oosterbegraafplaats
+8;Buurten;M57c;Drieburg
+8;Buurten;M58b;Weespertrekvaart
+8;Buurten;M58e;Amstelglorie
+8;Buurten;M58f;Overamstel
+8;Buurten;M58g;Amstelkwartier Noord
+8;Buurten;M58h;De Omval
+8;Buurten;M58i;Amstelkwartier Zuid
+8;Buurten;M58j;Amstelkwartier West
+8;Buurten;N60a;Van der Pekbuurt
+8;Buurten;N60b;Bloemenbuurt Zuid
+8;Buurten;N60c;Bloemenbuurt Noord
+8;Buurten;N61a;IJplein e.o.
+8;Buurten;N61b;Vogelbuurt Zuid
+8;Buurten;N61c;Vogelbuurt Noord
+8;Buurten;N61d;Vliegenbos
+8;Buurten;N62a;Tuindorp Nieuwendam West
+8;Buurten;N62b;Tuindorp Nieuwendam Oost
+8;Buurten;N63a;Blauwe Zand
+8;Buurten;N64a;Buiksloterdijk West
+8;Buurten;N64b;Buiksloterdijk Oost
+8;Buurten;N64c;Nieuwendammerdijk West
+8;Buurten;N64d;Nieuwendammerdijk Oost
+8;Buurten;N64e;Nieuwendammerdijk Zuid
+8;Buurten;N65a;Tuindorp Oostzaan West
+8;Buurten;N65b;Tuindorp Oostzaan Oost
+8;Buurten;N65c;Terrasdorp
+8;Buurten;N65d;De Bongerd
+8;Buurten;N66b;Oostzanerdijk
+8;Buurten;N66c;Walvisbuurt
+8;Buurten;N66d;Twiske West
+8;Buurten;N66e;Noorder IJplas
+8;Buurten;N66f;Molenwijk
+8;Buurten;N66g;Circus/Kermisbuurt
+8;Buurten;N67a;Kadoelen
+8;Buurten;N67b;Twiske Oost
+8;Buurten;N68a;Baanakkerspark Noord
+8;Buurten;N68b;Baanakkerspark Zuid
+8;Buurten;N68c;Werengouw Midden
+8;Buurten;N68d;Markengouw Midden
+8;Buurten;N68e;Markengouw Zuid
+8;Buurten;N68f;Werengouw Zuid
+8;Buurten;N69a;Rode Kruisbuurt
+8;Buurten;N69c;Loenermark
+8;Buurten;N69j;Buikslotermeerplein
+8;Buurten;N69k;Plan van Gool
+8;Buurten;N69l;De Kleine Wereld
+8;Buurten;N69m;Buikslotermeer Noord
+8;Buurten;N70a;Banne Zuidwest
+8;Buurten;N70b;Banne Zuidoost
+8;Buurten;N70c;Banne Noordwest
+8;Buurten;N70d;Banne Noordoost
+8;Buurten;N70e;Buiksloterbreek
+8;Buurten;N70f;Marjoleinterrein
+8;Buurten;N71c;Papaverweg e.o.
+8;Buurten;N71e;Cornelis Douwesterrein
+8;Buurten;N71f;NDSM terrein
+8;Buurten;N71g;Buiksloterham
+8;Buurten;N71h;Overhoeks
+8;Buurten;N72a;Bedrijventerrein Hamerstraat
+8;Buurten;N72b;Zamenhofstraat e.o.
+8;Buurten;N72c;Bedrijventerrein Nieuwendammerdijk
+8;Buurten;N73a;Schellingwoude West
+8;Buurten;N73b;Schellingwoude Oost
+8;Buurten;N73c;Schellingwoude Noord
+8;Buurten;N73d;Durgerdam
+8;Buurten;N73e;Zwarte Gouw
+8;Buurten;N73f;Ransdorp
+8;Buurten;N73g;Holysloot
+8;Buurten;N73h;Zunderdorp
+8;Buurten;N73i;Noorderstrook West
+8;Buurten;N73j;Noorderstrook Oost
+8;Buurten;N74a;Nintemanterrein
+8;Buurten;N74b;Elzenhagen Zuid
+8;Buurten;N74c;Elzenhagen Noord
+8;Buurten;T92a;Hoofdcentrum Zuidoost
+8;Buurten;T92b;Amstel III deel A/B Noord
+8;Buurten;T92c;Amstel III deel C/D Noord
+8;Buurten;T92d;Amstel III deel A/B Zuid
+8;Buurten;T92e;Amstel III deel C/D Zuid
+8;Buurten;T92f;AMC
+8;Buurten;T92g;Hoge Dijk
+8;Buurten;T93a;Venserpolder West
+8;Buurten;T93b;Venserpolder Oost
+8;Buurten;T93c;D-buurt
+8;Buurten;T93d;F-buurt
+8;Buurten;T93e;Amsterdamse Poort
+8;Buurten;T93f;Hoptille
+8;Buurten;T93g;Rechte H-buurt
+8;Buurten;T93h;Hakfort/Huigenbos
+8;Buurten;T93i;Huntum
+8;Buurten;T93j;Vogeltjeswei
+8;Buurten;T93k;Nelson Mandelapark
+8;Buurten;T94a;E-buurt
+8;Buurten;T94b;G-buurt West
+8;Buurten;T94c;Bijlmermuseum Noord
+8;Buurten;T94d;Kortvoort
+8;Buurten;T94e;Kelbergen
+8;Buurten;T94f;K-buurt Midden
+8;Buurten;T94g;K-buurt Zuidoost
+8;Buurten;T94h;K-buurt Zuidwest
+8;Buurten;T94i;Grunder/Koningshoef
+8;Buurten;T94j;G-buurt Oost
+8;Buurten;T94k;Kantershof
+8;Buurten;T94l;Gooise Kant
+8;Buurten;T94m;G-buurt Noord
+8;Buurten;T94n;Bijlmermuseum Zuid
+8;Buurten;T95a;L-buurt
+8;Buurten;T95b;Gaasperpark
+8;Buurten;T95c;Gaasperplas
+8;Buurten;T96a;Holendrecht Noordwest
+8;Buurten;T96b;Reigersbos Noord
+8;Buurten;T96c;Holendrecht Oost
+8;Buurten;T96d;Gaasperdam Noord
+8;Buurten;T96e;Gaasperdam Zuid
+8;Buurten;T96f;Reigersbos Midden
+8;Buurten;T96g;Reigersbos Zuid
+8;Buurten;T97a;Gein Noordwest
+8;Buurten;T97b;Gein Zuidwest
+8;Buurten;T97c;Gein Noordoost
+8;Buurten;T97d;Gein Zuidoost
+8;Buurten;T98a;Dorp Driemond
+8;Buurten;T98b;Landelijk Gebied Driemond
+8;Buurten;Z99z;buiten beschouwing
+9;Werkgebieden 2016;bb1;Afrikahaven
+9;Werkgebieden 2016;bb10;Sloterdijk I
+9;Werkgebieden 2016;bb11;Sloterdijk II
+9;Werkgebieden 2016;bb12;Sloterdijk III
+9;Werkgebieden 2016;bb13;Heining
+9;Werkgebieden 2016;bb14;Bedrijvencentrum Osdorp
+9;Werkgebieden 2016;bb15;Business Park Amsterdam  Osdorp
+9;Werkgebieden 2016;bb16;Overamstel
+9;Werkgebieden 2016;bb17;Weespertrekvaart Amsterdam
+9;Werkgebieden 2016;bb2;Atlaspark
+9;Werkgebieden 2016;bb20;Amstel III bedrijven
+9;Werkgebieden 2016;bb21;AMC
+9;Werkgebieden 2016;bb22;Schinkel
+9;Werkgebieden 2016;bb23;Medisch Centrum Slotervaart
+9;Werkgebieden 2016;bb24;Bedrijvencentrum Westerpark/Food Center Amsterdam
+9;Werkgebieden 2016;bb25;Landlust
+9;Werkgebieden 2016;bb26;C. Douwesterrein
+9;Werkgebieden 2016;bb27;NDSM/Hoge land
+9;Werkgebieden 2016;bb28;Hamerstraat
+9;Werkgebieden 2016;bb29;Buiksloterham/Overhoeks
+9;Werkgebieden 2016;bb3;Amerikahaven
+9;Werkgebieden 2016;bb30;Papaverweg/Metaalbewerkerweg
+9;Werkgebieden 2016;bb31;Zamenhofstraat/Pereboomsloot
+9;Werkgebieden 2016;bb32;Gembo-terrein/Nieuwendammerdijk
+9;Werkgebieden 2016;bb33;Cruquius
+9;Werkgebieden 2016;bb35;Zeeburgereiland
+9;Werkgebieden 2016;bb36;Jan Tooropstraat
+9;Werkgebieden 2016;bb37;Molukkenstraat
+9;Werkgebieden 2016;bb38;Tramremise Lekstraat
+9;Werkgebieden 2016;bb39;Drieburg
+9;Werkgebieden 2016;bb4;Westhaven
+9;Werkgebieden 2016;bb40;Havenstraatterrein/Karperweg
+9;Werkgebieden 2016;bb41;Sloten Slimmeweg
+9;Werkgebieden 2016;bb43;Steigereiland
+9;Werkgebieden 2016;bb5;Petroleumhaven e.o.
+9;Werkgebieden 2016;bb51;Amsterdam Teleport e.o.
+9;Werkgebieden 2016;bb52;Amstel III kantoren
+9;Werkgebieden 2016;bb53;Centrumgebied/Hoofdcentrum Zuidoost
+9;Werkgebieden 2016;bb54;Overschiestraat/Riekerpolder
+9;Werkgebieden 2016;bb55;Cornelis Lelylaan
+9;Werkgebieden 2016;bb56;Amsterdam Fashion Centre
+9;Werkgebieden 2016;bb57;werkgebieden Centrum
+9;Werkgebieden 2016;bb58;Oostelijke Handelskade/Rietlandpark
+9;Werkgebieden 2016;bb59;Zuidas
+9;Werkgebieden 2016;bb6;Coenhaven/Vlothaven
+9;Werkgebieden 2016;bb60;Jollenpad/Zuiderhof/Burgerweeshuis
+9;Werkgebieden 2016;bb61;Science Park Amsterdam
+9;Werkgebieden 2016;bb62;Amstelstation/De Eenhoorn
+9;Werkgebieden 2016;bb65;Oude Haagseweg
+9;Werkgebieden 2016;bb66;Centrale Zone Noord
+9;Werkgebieden 2016;bb67;Delflandpleinbuurt
+9;Werkgebieden 2016;bb68;van Diemenstraat
+9;Werkgebieden 2016;bb69;Boldootstrook
+9;Werkgebieden 2016;bb7;Minervahaven/Hempoint
+9;Werkgebieden 2016;bb8;Vervoerscentrum
+9;Werkgebieden 2016;bb9;Alfa-driehoek
+9;Werkgebieden 2016;bbxx;Overig Amsterdam o.i.d.
+10;Winkelgebieden 2017;W001;Haarlemmerstraat/Haarlemmerdijk e.o.
+10;Winkelgebieden 2017;W002;Jordaan/Westelijke grachtengordel (excl kernstraten)
+10;Winkelgebieden 2017;W003;Nieuwendijk/Damrak
+10;Winkelgebieden 2017;W004;Dam/ Magna Plaza
+10;Winkelgebieden 2017;W005;Kalverstraat/Heilige Weg/Rokin.
+10;Winkelgebieden 2017;W006;Utrechtse straat
+10;Winkelgebieden 2017;W007;Rozengracht/Raadhuisstraat
+10;Winkelgebieden 2017;W008;Waterlooplein/Jodenbreestraat
+10;Winkelgebieden 2017;W009;Reguliersbreestraat/Munt
+10;Winkelgebieden 2017;W010;Vijzelstraat/Vijzelgracht
+10;Winkelgebieden 2017;W011;Leidsestraat/ Koningsplein
+10;Winkelgebieden 2017;W012;Nieuwmarktbuurt/Burgwallen (excl kernstraten)
+10;Winkelgebieden 2017;W013;Oostelijke eilanden
+10;Winkelgebieden 2017;W015;Spaarndammerstraat
+10;Winkelgebieden 2017;W016;Tweede Nassaustraat
+10;Winkelgebieden 2017;W017;Hugo de Grootplein en omgeving
+10;Winkelgebieden 2017;W022;Bedrijvencentrum Westerpark
+10;Winkelgebieden 2017;W024;Station Sloterdijk en omgeving
+10;Winkelgebieden 2017;W025;Kinkerstraat
+10;Winkelgebieden 2017;W026;Ten Katemarkt
+10;Winkelgebieden 2017;W027;J.P. Heyestraat
+10;Winkelgebieden 2017;W028;Bilderdijkstraat
+10;Winkelgebieden 2017;W029;Overtoom en omgeving.
+10;Winkelgebieden 2017;W032;Ferdinand Bolstraat, Heinekenplein e.o.
+10;Winkelgebieden 2017;W033;Albert Cuypstraat,Albert Cuyp-markt
+10;Winkelgebieden 2017;W034;van Woustraat en omgeving.
+10;Winkelgebieden 2017;W036;Linnaeusstraat
+10;Winkelgebieden 2017;W037;Dapperstraat/Dapperplein
+10;Winkelgebieden 2017;W038;Eerste van Swindenstraat
+10;Winkelgebieden 2017;W039;Eerste Oosterparkstraat
+10;Winkelgebieden 2017;W041;Javastraat
+10;Winkelgebieden 2017;W042;Molukkenstraat
+10;Winkelgebieden 2017;W043;Brazilie
+10;Winkelgebieden 2017;W046;Bos en Lommerweg
+10;Winkelgebieden 2017;W047;Gulden Winckel-plantsoen/-markt
+10;Winkelgebieden 2017;W049;Jan Evertsenstraat en omgeving
+10;Winkelgebieden 2017;W050;Jan van Galenstraat
+10;Winkelgebieden 2017;W051;Postjesweg
+10;Winkelgebieden 2017;W053;P.C. Hooftstraat
+10;Winkelgebieden 2017;W054;Beethovenstraat
+10;Winkelgebieden 2017;W055;Zeilstraat/Hoofddorpplein
+10;Winkelgebieden 2017;W056;Cornelis Schuytstraat
+10;Winkelgebieden 2017;W057;Amstelveense weg
+10;Winkelgebieden 2017;W058;Olympiaplein en omgeving.
+10;Winkelgebieden 2017;W060;Schinkel (Praxis)
+10;Winkelgebieden 2017;W061;Rijnstraat
+10;Winkelgebieden 2017;W062;Maasstraat
+10;Winkelgebieden 2017;W063;Scheldestraat
+10;Winkelgebieden 2017;W065;Middenweg
+10;Winkelgebieden 2017;W066;Christiaan Huygensplein
+10;Winkelgebieden 2017;W068;Spaklerweg (Kwikfit, Halfords)
+10;Winkelgebieden 2017;W069;Buikslotermeerplein (boven t Y)
+10;Winkelgebieden 2017;W070;Mosveld/Hagedoornweg
+10;Winkelgebieden 2017;W071;Waterlandplein
+10;Winkelgebieden 2017;W073;de Wieken
+10;Winkelgebieden 2017;W074;Klaprozenweg
+10;Winkelgebieden 2017;W076;Burgemeester de Vlugtlaan/Burgemeester Fockstraat
+10;Winkelgebieden 2017;W077;Plein 40-45
+10;Winkelgebieden 2017;W078;Lambertus Zijlplein
+10;Winkelgebieden 2017;W079;Burg. v Leeuwenlaan.
+10;Winkelgebieden 2017;W083;Osdorperplein/Tussenmeer
+10;Winkelgebieden 2017;W084;Osdorperban/Hoekenes
+10;Winkelgebieden 2017;W085;Dijkgraafplein en omgeving
+10;Winkelgebieden 2017;W086;De Aker/Dukaat
+10;Winkelgebieden 2017;W088;Bedrijvencentrum Osdorp
+10;Winkelgebieden 2017;W089;August AllebÃ¯Â¿Â½plein
+10;Winkelgebieden 2017;W090;Johan Huizingalaan en omgeving
+10;Winkelgebieden 2017;W091;Sierplein
+10;Winkelgebieden 2017;W093;Delflandplein
+10;Winkelgebieden 2017;W095;BelgiÃ¯Â¿Â½plein en omgeving
+10;Winkelgebieden 2017;W096;Gelderlandplein
+10;Winkelgebieden 2017;W097;Rooswijk
+10;Winkelgebieden 2017;W099;Amsterdamse Poort
+10;Winkelgebieden 2017;W100;Arena gebied
+10;Winkelgebieden 2017;W101;Reigersbos
+10;Winkelgebieden 2017;W103;Ganzenpoort
+10;Winkelgebieden 2017;W104;Gein/Wisseloordplein
+10;Winkelgebieden 2017;W105;Holendrechtplein
+10;Winkelgebieden 2017;W106;IKEA Zuidoost
+10;Winkelgebieden 2017;W313;Ceintuurbaan West
+10;Winkelgebieden 2017;W334;De Clerqstraat
+10;Winkelgebieden 2017;W335;1e Constantijn Huijgensstraat
+10;Winkelgebieden 2017;W336;IJburg
+10;Winkelgebieden 2017;W337;Zonneplein
+10;Winkelgebieden 2017;W338;Purmerplein
+10;Winkelgebieden 2017;W339;Caleido
+10;Winkelgebieden 2017;W340;Albert Camuslaan eo
+10;Winkelgebieden 2017;W341;Beukenplein en omgeving
+10;Winkelgebieden 2017;W342;Pretoriusstraat/Pretoriusplein
+10;Winkelgebieden 2017;W343;Brink Betondorp
+10;Winkelgebieden 2017;W354;PDV Molukkenstraat
+10;Winkelgebieden 2017;W355;PDV Villa Arena
+10;Winkelgebieden 2017;W358;Woon en Bouwcentrum Westpoort
+10;Winkelgebieden 2017;W370;Tussenmeer midden
+10;Winkelgebieden 2017;W376;de negen straatjes
+10;Winkelgebieden 2017;W377;van der Pekstraat
+10;Winkelgebieden 2017;W378;Bezaanjachtplein
+10;Winkelgebieden 2017;W379;de Kameleon
+10;Winkelgebieden 2017;W380;Oostpoort
+10;Winkelgebieden 2017;W381;Mercuriusplein
+10;Winkelgebieden 2017;W382;Roelof Hartststraat/plein
+10;Winkelgebieden 2017;W383;Europaplein
+10;Winkelgebieden 2017;W401;Czaar Peterstraat
+10;Winkelgebieden 2017;W402;Eilandenboulevard
+10;Winkelgebieden 2017;W403;Warmoesstraat
+10;Winkelgebieden 2017;W404;Damstraat/Hoogstraten
+10;Winkelgebieden 2017;W405;Staalstraat
+10;Winkelgebieden 2017;W406;Sint Anthoniesbreestraat
+10;Winkelgebieden 2017;W407;Nieuwmarkt /Gelderse kade
+10;Winkelgebieden 2017;W408;Zeedijk
+10;Winkelgebieden 2017;W410;N. Spiegelstraat/Spiegelgracht
+10;Winkelgebieden 2017;W411;Singel/Reguliersdwarsstraat
+10;Winkelgebieden 2017;W412;Elandsgracht/Hazenstraat
+10;Winkelgebieden 2017;W413;Leliegracht
+10;Winkelgebieden 2017;W414;Herenstraat/Prinsenstraat
+10;Winkelgebieden 2017;W415;2e Leliedwarsstraat/2e Anjeliersdwarsstraat
+10;Winkelgebieden 2017;W416;Westerstraat
+10;Winkelgebieden 2017;W417;2e Goudsbloemdwarsstraat
+10;Winkelgebieden 2017;W418;Leidseplein/Max Euweplein
+10;Winkelgebieden 2017;W421;Amstelstation
+10;Winkelgebieden 2017;W422;Zuidplein.Station Zuid
+10;Winkelgebieden 2017;W423;Centraal Station
+10;Winkelgebieden 2017;W424;1e vd Helststraat
+10;Winkelgebieden 2017;W425;Sarphatipark W
+10;Winkelgebieden 2017;W426;van Baerlestraat
+10;Winkelgebieden 2017;W427;Waddenweg/Meeuwenlaan
+10;Winkelgebieden 2017;W428;Stadionplein
+11;4-cijferige postcode;0;0
+11;4-cijferige postcode;1011;1011
+11;4-cijferige postcode;1012;1012
+11;4-cijferige postcode;1013;1013
+11;4-cijferige postcode;1014;1014
+11;4-cijferige postcode;1015;1015
+11;4-cijferige postcode;1016;1016
+11;4-cijferige postcode;1017;1017
+11;4-cijferige postcode;1018;1018
+11;4-cijferige postcode;1019;1019
+11;4-cijferige postcode;1021;1021
+11;4-cijferige postcode;1022;1022
+11;4-cijferige postcode;1023;1023
+11;4-cijferige postcode;1024;1024
+11;4-cijferige postcode;1025;1025
+11;4-cijferige postcode;1026;1026
+11;4-cijferige postcode;1027;1027
+11;4-cijferige postcode;1028;1028
+11;4-cijferige postcode;1031;1031
+11;4-cijferige postcode;1032;1032
+11;4-cijferige postcode;1033;1033
+11;4-cijferige postcode;1034;1034
+11;4-cijferige postcode;1035;1035
+11;4-cijferige postcode;1036;1036
+11;4-cijferige postcode;1037;1037
+11;4-cijferige postcode;1041;1041
+11;4-cijferige postcode;1042;1042
+11;4-cijferige postcode;1043;1043
+11;4-cijferige postcode;1044;1044
+11;4-cijferige postcode;1045;1045
+11;4-cijferige postcode;1046;1046
+11;4-cijferige postcode;1047;1047
+11;4-cijferige postcode;1051;1051
+11;4-cijferige postcode;1052;1052
+11;4-cijferige postcode;1053;1053
+11;4-cijferige postcode;1054;1054
+11;4-cijferige postcode;1055;1055
+11;4-cijferige postcode;1056;1056
+11;4-cijferige postcode;1057;1057
+11;4-cijferige postcode;1058;1058
+11;4-cijferige postcode;1059;1059
+11;4-cijferige postcode;1060;1060
+11;4-cijferige postcode;1061;1061
+11;4-cijferige postcode;1062;1062
+11;4-cijferige postcode;1063;1063
+11;4-cijferige postcode;1064;1064
+11;4-cijferige postcode;1065;1065
+11;4-cijferige postcode;1066;1066
+11;4-cijferige postcode;1067;1067
+11;4-cijferige postcode;1068;1068
+11;4-cijferige postcode;1069;1069
+11;4-cijferige postcode;1071;1071
+11;4-cijferige postcode;1072;1072
+11;4-cijferige postcode;1073;1073
+11;4-cijferige postcode;1074;1074
+11;4-cijferige postcode;1075;1075
+11;4-cijferige postcode;1076;1076
+11;4-cijferige postcode;1077;1077
+11;4-cijferige postcode;1078;1078
+11;4-cijferige postcode;1079;1079
+11;4-cijferige postcode;1081;1081
+11;4-cijferige postcode;1082;1082
+11;4-cijferige postcode;1083;1083
+11;4-cijferige postcode;1086;1086
+11;4-cijferige postcode;1087;1087
+11;4-cijferige postcode;1091;1091
+11;4-cijferige postcode;1092;1092
+11;4-cijferige postcode;1093;1093
+11;4-cijferige postcode;1094;1094
+11;4-cijferige postcode;1095;1095
+11;4-cijferige postcode;1096;1096
+11;4-cijferige postcode;1097;1097
+11;4-cijferige postcode;1098;1098
+11;4-cijferige postcode;1101;1101
+11;4-cijferige postcode;1102;1102
+11;4-cijferige postcode;1103;1103
+11;4-cijferige postcode;1104;1104
+11;4-cijferige postcode;1105;1105
+11;4-cijferige postcode;1106;1106
+11;4-cijferige postcode;1107;1107
+11;4-cijferige postcode;1108;1108
+11;4-cijferige postcode;1109;1109
+8;Buurten;M50a;Strandeiland
+8;Buurten;M50b;Middeneiland Zuidoost
+8;Buurten;M50c;Middeneiland Noordoost
+8;Buurten;M50e;Middeneiland Noordwest
+8;Buurten;M50f;Buiteneiland
+9;Werkgebieden 2016;bb18;Weespertrekvaart Ouder-Amstel
+9;Werkgebieden 2016;bb19;Amstel II
+9;Werkgebieden 2016;bb34;Verrijn Stuart/de Sniep
+9;Werkgebieden 2016;bb42;Pompstation Waterleidingen ZO
+9;Werkgebieden 2016;bb63;Entrada
+9;Werkgebieden 2016;bb64;Bergwijkpark Diemen
+10;Winkelgebieden 2017;W014;Binnenstad overig
+10;Winkelgebieden 2017;W018;Staatliedenbuurt overig
+10;Winkelgebieden 2017;W019;Spaarndammerbuurt overig
+10;Winkelgebieden 2017;W020;Frederik Hendrikbuurt overig
+10;Winkelgebieden 2017;W023;Westelijk Havengebied overig
+10;Winkelgebieden 2017;W030;Kinkerbuurt overig
+10;Winkelgebieden 2017;W031;Oud West overig
+10;Winkelgebieden 2017;W035;De Pijp overig
+10;Winkelgebieden 2017;W040;Oud Oost overig
+10;Winkelgebieden 2017;W044;Oud Zeeburg overig
+10;Winkelgebieden 2017;W045;Nieuw Zeeburg overig
+10;Winkelgebieden 2017;W048;Bos en Lommer overig
+10;Winkelgebieden 2017;W052;De Baarsjes overig
+10;Winkelgebieden 2017;W059;Oud Zuid overig
+10;Winkelgebieden 2017;W064;Rivierenbuurt overig
+10;Winkelgebieden 2017;W067;Watergraafsmeer overig
+10;Winkelgebieden 2017;W075;Noord overig
+10;Winkelgebieden 2017;W082;Geuzenveld/Slotermeer overig
+10;Winkelgebieden 2017;W087;Osdorp overig
+10;Winkelgebieden 2017;W094;Slotervaart/Overtoomse Veld overig
+10;Winkelgebieden 2017;W098;Buitenveldert overig
+10;Winkelgebieden 2017;W107;Praxis Zuidoost
+10;Winkelgebieden 2017;W108;Zuidoost overig
+10;Winkelgebieden 2017;W351;Praxis Noordzeeweg
+10;Winkelgebieden 2017;W352;Zuidas Noord overig gebied
+10;Winkelgebieden 2017;W353;Gamma Nieuwe Hemweg
+10;Winkelgebieden 2017;W356;Praxis Trompenburgerstraat
+10;Winkelgebieden 2017;W357;Gamma Aletta Jacobslaan
+10;Winkelgebieden 2017;W359;Riva-terrein Zuidoost
+10;Winkelgebieden 2017;W409;Grimburgwal
