@@ -1,0 +1,537 @@
+---
+title: "Forecasting of product sales for a meal service"
+author: "Elisabeth"
+date: "1/27/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(tidymodels)
+```
+
+## Data
+
+This data is was part of a Machine Learning Hackathon held jointly by Analytics Vidhya & Genpact during Dec 15 2018 00:00 GMT+0530 to Dec 16 2018 23:59 GMT+0530. It can be downloaded from: https://www.kaggle.com/ghoshsaptarshi/av-genpact-hack-dec2018
+
+```{r}
+centers <- readr::read_csv("data_raw/Meal_service/fulfilment_center_info.csv")
+meals <- readr::read_csv("data_raw/Meal_service/meal_info.csv")
+orders <- readr::read_csv("data_raw/Meal_service/train.csv")
+
+ggplot(data = pivot_longer(orders, cols = week:num_orders), aes(x = value)) + 
+  stat_density() + 
+  facet_wrap(~name, scales = "free")
+```
+
+## Context
+
+Your client is a meal delivery company which operates in multiple cities. They have various fulfillment centers in these cities for dispatching meal orders to their customers. The client wants you to help these centers with demand forecasting for upcoming weeks so that these centers will plan the stock of raw materials accordingly.
+
+The replenishment of majority of raw materials is done on weekly basis and since the raw material is perishable, the procurement planning is of utmost importance. Secondly, staffing of the centers is also one area wherein accurate demand forecasts are really helpful. Given the following information, the task is to predict the demand for the next 10 weeks (Weeks: 146-155) for the center-meal combinations in the test set:
+
+* Historical data of demand for a product-center combination (Weeks: 1 to 145)
+* product(Meal) features such as category, sub-category, current price and discount
+* Information for fulfillment center like center area, city information etc.
+
+### Files
+
+* Weekly Demand data (train.csv): Contains the historical demand data for all centers
+* fulfilmentcenterinfo.csv: Contains information for each fulfillment center
+* meal_info.csv: Contains information for each meal being served
+
+## Merging the datasets & creating features.
+
+I merge the tables and create extra features for week of the year, date, season, and holiday.
+
+```{r}
+orders$year = floor(orders$week / 52)
+orders$yearweek = orders$week %% 52
+orders$date = as.Date("2017-01-01") + orders$week * 7
+orders$winter_holiday = ifelse(orders$yearweek == 52 | orders$yearweek == 1, 1, 0)
+orders$season = as.factor(ifelse(orders$yearweek <=4, "winter", 
+                       ifelse(orders$yearweek <=16, "spring",
+                              ifelse(orders$yearweek <= 29, "summer",
+                                     ifelse(orders$yearweek <=42, "fall", "winter")))))
+
+orders <- merge(meals, orders, by = "meal_id")
+
+orders <- merge(orders, centers, by = "center_id") %>%
+  select(id, week, year, yearweek, center_id, city_code, region_code, center_type, op_area, meal_id, category,
+         cuisine, everything() )
+
+orders <- orders %>%
+  mutate(across(.cols = c(id,center_id:center_type, meal_id:cuisine, emailer_for_promotion, homepage_featured),as.factor)) %>%
+  arrange(week, center_id)
+```
+
+## Exploratory plots
+
+Explore which categories are most popular.
+
+```{r}
+orders %>%
+  group_by(category) %>%
+  summarise(total_orders = sum(num_orders),
+            n = n()) %>%
+  arrange(-total_orders)
+```
+
+Show the top 10 most sold products, together with the spread of their sales in a boxplot.
+
+```{r}
+orders %>%
+  mutate(
+    meal_id = fct_lump(meal_id, n = 10),
+    meal_id = fct_reorder(meal_id, -num_orders)
+  ) %>%
+  ggplot(aes(meal_id, num_orders, color = meal_id)) +
+  geom_boxplot(outlier.colour = NA) +
+  geom_jitter(alpha = 0.1, width = 0.15) +
+  ylim(0,1e4) +
+  labs(x = NULL, y = "number of orders") +
+  theme(legend.position = "none")
+```
+The meal numbers aren't that informative, let's look at them in a table with their cuisine and category.
+
+```{r}
+orders %>%
+  mutate(
+    meal_id = fct_lump(meal_id, n = 10),
+    meal_id = fct_reorder(meal_id, -num_orders)
+  ) %>%
+  select(meal_id, cuisine, category) %>%
+  filter(meal_id!="Other")
+```
+
+Out of those 10 the Thai beverage seems like the most interesting to me. In this example I'll focus on this product.
+Explore the weekly sales of this product.
+
+```{r}
+library(ggformula)
+orders %>%
+  filter(meal_id == "1993") %>%
+  group_by(week) %>%
+  summarize(weekly_orders = sum(num_orders)) %>%
+  ungroup() %>%
+  ggplot(aes(x=week, y=weekly_orders)) +
+  geom_point(shape=18) +
+  geom_line( color = "midnightblue") +
+  geom_spline(alpha = 0.6, color="red", size = 1.2, df = 12) +
+  labs(x = NULL) +
+  labs(title = "Number of orders of Thai beverage, per week", x = "Week", y = "Sales") +
+  scale_y_continuous(labels = comma)
+```
+
+The sales of this product do seem to change with the seasons. Let's explore if sales are related to promotional activities with two simple boxplots.
+
+```{r}
+orders %>%
+  filter(meal_id == "1993") %>%
+  group_by(week) %>%
+  mutate(weekly_orders = sum(num_orders)) %>%
+  ungroup() %>%
+  ggplot(aes(x=emailer_for_promotion, y=weekly_orders, color = emailer_for_promotion)) +
+  geom_boxplot(outlier.colour = NA) +
+  geom_jitter(alpha = 0.1, width = 0.15) +
+  labs(x = NULL) +
+  labs(title = "Number of orders of Thai beverage, by email promotion", x = "Email promotion", y = "Sales") +
+  scale_y_continuous(labels = comma)
+```
+
+```{r}
+orders %>%
+  filter(meal_id == "1993") %>%
+  group_by(week) %>%
+  mutate(weekly_orders = sum(num_orders)) %>%
+  ungroup() %>%
+  ggplot(aes(x=homepage_featured, y=weekly_orders, color = homepage_featured)) +
+  geom_boxplot(outlier.colour = NA) +
+  geom_jitter(alpha = 0.1, width = 0.15) +
+  labs(x = NULL) +
+  labs(title = "Number of orders of Thai beverage, by email promotion", x = "Email promotion", y = "Sales") +
+  scale_y_continuous(labels = comma)
+```
+
+There seems to be a correlation with both.
+
+Lastly, lets explore whether there's a regional difference.
+
+```{r}
+orders %>%
+  filter(meal_id == "1993") %>%
+  ggplot(aes(region_code, num_orders, color = week)) +
+  geom_boxplot(outlier.colour = NA) +
+  geom_jitter(alpha = 0.1, width = 0.15) +
+  ylim(0,4e3) +
+  labs(x = "region", y = "number of orders") +
+  scale_color_viridis_c()
+```
+
+There is certainly a regional variation. Region 56 seems to be the region with the most variance.
+
+## Selection of features
+
+For this model I'm going to focus on the Thai beverage, and forecast weekly sales based on the features:
+* Region (region_code)
+* Type of center (center_type)
+* Operational ares (op_area)
+* Checkout price (checkout_price)
+* Email promotion (emailer_for_promotion)
+* Featured on homepage (homepage_featured)
+* Winter holliday (winter_holiday)
+* Season of the year (season)
+
+```{r}
+thaibev <- orders %>%
+  filter(meal_id == "1993") %>%
+  select(id, date, week, year, yearweek, region_code, center_type, op_area, checkout_price,
+         emailer_for_promotion, homepage_featured, winter_holiday, season, num_orders)
+```
+
+## Training the models
+
+The outcome measure is continuous, therefor the type of model I'll use is regression. I'll fit the following models:
+
+* linear regression
+* random forest
+* boosted trees
+* boosted ARIMA
+
+I'll fit all the models and compare their fit.
+
+### Check if the outcome variable is normally distributed
+
+```{r}
+thaibev %>%
+  ggplot(aes(num_orders)) +
+  geom_density()
+```
+
+The outcome variable is skewed to the right, so I use a log transformation to improve this.
+
+```{r}
+thaibev <- thaibev %>%
+  mutate(num_orders_ln = log(num_orders))
+```
+
+Check if the distribution has improved.
+
+```{r}
+thaibev %>%
+  ggplot(aes(num_orders_ln)) +
+  geom_density()
+```
+
+It's satisfactory.
+
+### Splitting the data
+
+```{r}
+library(modeltime)
+library(timetk)
+library(lubridate)
+gc()
+set.seed(888)
+resamples_ts <- time_series_cv(
+    data        = thaibev,
+    assess      = "2 months",
+    initial     = "5 months",
+    skip        = "2 months",
+    slice_limit = 25
+)
+gc()
+
+resamples_ts
+```
+### Resampling the data
+
+```{r}
+thaibev_folds <- resamples_ts
+
+control <- control_resamples(save_pred = TRUE)
+```
+
+### Setting up the models
+
+Linear Regression
+
+```{r}
+base_rec <- recipe(num_orders_ln ~ ., data = thaibev) %>%
+  update_role(id, date, week, year, yearweek, num_orders, new_role = "id") %>%
+  step_dummy(all_nominal_predictors())
+
+lm_spec <- linear_reg()
+
+lin_wflow <-
+  workflow() %>% 
+  add_model(lm_spec) %>% 
+  add_recipe(base_rec)
+```
+
+Random forest
+
+```{r}
+rf_spec <-
+  rand_forest(trees = 1e3) %>%
+  set_mode("regression") %>%
+  set_engine("ranger")
+
+rf_wflow <-
+  workflow() %>%
+  add_model(rf_spec) %>%
+  add_recipe(base_rec)
+```
+
+Boosted trees
+
+```{r}
+xgb_spec <- boost_tree(
+  trees = 1000, 
+  tree_depth = tune(), min_n = tune(), 
+  loss_reduction = tune(),                     ## first three: model complexity
+  sample_size = tune(), mtry = tune(),         ## randomness
+  learn_rate = tune(),                         ## step size
+) %>% 
+  set_engine("xgboost") %>% 
+  set_mode("regression")
+
+xgb_wflow <-
+  workflow() %>%
+  add_model(xgb_spec) %>%
+  add_recipe(base_rec)
+```
+
+## Fitting & tuning the models
+
+```{r}
+doParallel::registerDoParallel() 
+metrics = metric_set(rmse, rsq, ccc)
+```
+
+Linear regression
+
+```{r}
+lin_res <- fit_resamples(lin_wflow, resamples = thaibev_folds)
+collect_metrics(lin_res)
+```
+
+Random forest
+
+```{r}
+rf_res <- fit_resamples(rf_wflow, resamples = thaibev_folds)
+collect_metrics(rf_res)
+```
+
+Boosted trees
+
+```{r}
+set.seed(123)
+xgb_grid <-
+  grid_max_entropy(
+    tree_depth(c(5L, 10L)),
+    min_n(c(10L, 40L)),
+    mtry(c(5L, 10L)),
+    sample_prop(c(0.5, 1.0)),
+    learn_rate(c(-2, -1)),
+    loss_reduction(),
+    size = 20
+  )
+
+library(finetune)
+set.seed(234)
+xgb_res <-
+  tune_race_anova(
+    xgb_wflow,
+    thaibev_folds,
+    grid = xgb_grid,
+    metrics = metrics,
+    control = control_race(verbose_elim = TRUE)
+  )
+
+collect_metrics(xgb_res)
+
+xgb_param <- 
+  xgb_wflow %>% 
+  parameters() %>%
+  update(mtry=mtry(c(5L, 10L)))
+
+collect_metrics(xgb_res)
+
+plot_race(xgb_res)
+```
+## Choosing the best model
+
+```{r}
+best_linear <- collect_metrics(lin_res) %>%
+  filter(.metric == 'rsq') %>%
+  select(.metric, mean, std_err, .config) %>%
+  mutate(model = "linear")
+best_random_forest <- collect_metrics(rf_res) %>%
+  filter(.metric == 'rsq') %>%
+  select(.metric, mean, std_err, .config)%>%
+  mutate(model = "rf")
+best_xgb <- collect_metrics(xgb_res) %>%
+  filter(.metric == 'rsq') %>%
+  select(.metric, mean, std_err, .config)%>%
+  mutate(model = "xgb")
+
+best_all <- rbind(best_linear, best_random_forest, best_xgb) %>%
+  arrange(desc(mean))
+best_all
+```
+The best results come from the xgb model. I select this model and save it to use on the testset.
+
+```{r}
+collect_metrics(xgb_res) %>%
+  filter(.metric=="rsq") %>%
+  arrange(desc(mean))
+best_rsq <- select_by_one_std_err(xgb_res, tree_depth, metric = "rsq")
+best_rsq
+
+```
+
+## Use the model on the testset & explore the results
+
+```{r}
+final_xgb <- finalize_workflow(
+  xgb_wflow,
+  best_rsq
+)
+
+final_xgb
+```
+
+```{r}
+test_prediction <- final_xgb %>%
+  fit(
+    data = thaibev_training
+  ) %>%
+  predict(new_data = thaibev_testing) %>%
+  mutate(exp.pred = exp(.pred)) %>%
+  bind_cols(testing(thaibev_split)) %>%
+  mutate(perc_diff = round(abs(1-exp.pred/num_orders)*100,2),
+         bin_diff = as.factor(ifelse(perc_diff<=1,"1: <=1%",
+                                     ifelse(perc_diff<=5,"2: <=5%",
+                                            ifelse(perc_diff<=10,"3: <=10%",
+                                                   ifelse(perc_diff<=25, "4: <=25%",
+                                                    ifelse(perc_diff<=100,"5: <=100%","6: >100%")))))))
+
+gc()
+test_prediction %>%
+  ggplot(aes(x=exp.pred,y=num_orders, color=bin_diff)) +
+  geom_point(alpha=.3) +
+  geom_abline() +
+  xlim(c(0,6000)) +
+  scale_colour_viridis_d(direction=-1)
+  
+```
+
+```{r}
+gc()
+test_prediction %>%
+  ggplot(aes(x=exp.pred,y=num_orders, color=bin_diff)) +
+  geom_point(alpha=.6) +
+  geom_abline() +
+  xlim(c(0,1000)) +
+  ylim(c(0,1000)) +
+  scale_colour_viridis_d(direction=-1)
+```
+```{r}
+test_prediction %>%
+  group_by(bin_diff) %>%
+  summarise(n_in_group = n(),
+            p_in_group = round(n()/nrow(test_prediction),2))
+```
+```{r}
+weekly_test_prediction <- test_prediction %>%
+  select(week,num_orders,.pred) %>%
+  group_by(week) %>%
+  summarise(m_weekly_orders = sum(num_orders)/sum(!is.na(.pred)),
+            m_weekly_pred = sum(.pred)/sum(!is.na(.num_orders))) %>%
+  mutate(within_5p = ifelse(abs(m_weekly_orders-m_weekly_pred) < 0.05*m_weekly_orders,1,0),
+         within_10p = ifelse(abs(m_weekly_orders-m_weekly_pred) < 0.1*m_weekly_orders,1,0),
+         within_25p = ifelse(abs(m_weekly_orders-m_weekly_pred) < 0.25*m_weekly_orders,1,0),
+         within_50p = ifelse(abs(m_weekly_orders-m_weekly_pred) < 0.5*m_weekly_orders,1,0))
+
+
+weekly_test_prediction %>%
+  summarise(n=n(),
+            p_5p = sum(within_5p)/n(),
+            p_10p = sum(within_10p)/n(),
+            p_25p = sum(within_25p)/n(),
+            p_50p = sum(within_50p)/n())
+
+```
+
+
+```{r}
+test_prediction %>%
+  select(exp.pred, num_orders, week) %>%
+  mutate(min.5.perc = num_orders*.90,
+         plus.5.perc = num_orders*1.1) %>%
+  pivot_longer(cols=-week) %>%
+  group_by(week,name) %>%
+  summarize(weekly_orders=sum(value)) %>%
+  ungroup() %>%
+  ggplot(aes(x=week,y=weekly_orders,color=name)) +
+  geom_point() +
+  geom_line()
+           
+```
+
+### Most important features
+
+```{r}
+library(vip)
+
+gc()
+final_xgb %>%
+  fit(data = thaibev_training) %>%
+  extract_fit_parsnip() %>%
+  vip(geom = "point")
+```
+### Predicted, versus the true sales
+
+```{r}
+
+```
+
+```{r}
+splits <- thaibev %>%
+  time_series_split(date_var = date, assess = "3 months", cumulative = TRUE)
+splits %>%
+  tk_time_series_cv_plan() %>%
+  plot_time_series_cv_plan(date, num_orders, .interactive = FALSE)
+
+timefolds <- training(splits) %>%
+  time_series_cv(date_var = date, assess = "3 months", cumulative = TRUE)
+
+timefolds %>%
+  plot_time_series_cv_plan(date, num_orders, .interactive = FALSE)
+
+model_fit_prophet <- prophet_reg() %>%
+  set_engine("prophet", yearly.seasonality = TRUE) %>%
+  fit(num_orders ~ date, training(splits))
+model_fit_prophet$fit
+autoplot(model_fit_prophet)
+```
+```{r}
+splits_ts <- thaibev %>%
+  time_series_split(date_var = date, assess = "2 months", cumulative = TRUE)
+
+resamples_ts <- time_series_cv(
+    data        = training(splits_ts),
+    assess      = "2 months",
+    initial     = "5 months",
+    skip        = "2 months",
+    slice_limit = 2
+)
+
+resamples_ts
+```
+
+
+
+## Conclusion
