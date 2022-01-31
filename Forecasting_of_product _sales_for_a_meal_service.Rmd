@@ -2,32 +2,36 @@
 title: "Forecasting of product sales for a meal service"
 author: "Elisabeth"
 date: "1/27/2022"
-output: pdf_document
+output:
+  pdf_document:
+    dev: png
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(tidymodels)
+library(modeltime)
+library(timetk)
+library(lubridate)
+library(ggformula)
 ```
 
 ## Data
 
-This data is was part of a Machine Learning Hackathon held jointly by Analytics Vidhya & Genpact during Dec 15 2018 00:00 GMT+0530 to Dec 16 2018 23:59 GMT+0530. It can be downloaded from: https://www.kaggle.com/ghoshsaptarshi/av-genpact-hack-dec2018
+This data was part of a Machine Learning Hackathon held jointly by Analytics Vidhya & Genpact. It can be downloaded from:
 
-```{r}
+* https://www.kaggle.com/ghoshsaptarshi/av-genpact-hack-dec2018
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 centers <- readr::read_csv("data_raw/Meal_service/fulfilment_center_info.csv")
 meals <- readr::read_csv("data_raw/Meal_service/meal_info.csv")
 orders <- readr::read_csv("data_raw/Meal_service/train.csv")
-
-ggplot(data = pivot_longer(orders, cols = week:num_orders), aes(x = value)) + 
-  stat_density() + 
-  facet_wrap(~name, scales = "free")
 ```
 
 ## Context
 
-Your client is a meal delivery company which operates in multiple cities. They have various fulfillment centers in these cities for dispatching meal orders to their customers. The client wants you to help these centers with demand forecasting for upcoming weeks so that these centers will plan the stock of raw materials accordingly.
+The client is a meal delivery company which operates in multiple cities. They have various fulfillment centers in these cities for dispatching meal orders to their customers. The client wants you to help these centers with demand forecasting for upcoming weeks so that these centers will plan the stock of raw materials accordingly.
 
 The replenishment of majority of raw materials is done on weekly basis and since the raw material is perishable, the procurement planning is of utmost importance. Secondly, staffing of the centers is also one area wherein accurate demand forecasts are really helpful. Given the following information, the task is to predict the demand for the next 10 weeks (Weeks: 146-155) for the center-meal combinations in the test set:
 
@@ -41,11 +45,21 @@ The replenishment of majority of raw materials is done on weekly basis and since
 * fulfilmentcenterinfo.csv: Contains information for each fulfillment center
 * meal_info.csv: Contains information for each meal being served
 
+### Code
+
+The full code for this markdown file can be found on my github:
+
+* https://github.com/evandermeijde/ofthemeadow 
+
+## Reserch question
+
+Fit a model to predict weekly number of orders per meal service center, for one meal.
+
 ## Merging the datasets & creating features.
 
-I merge the tables and create extra features for week of the year, date, season, and holiday.
+I've merged the three tables and created extra features for week of the year, date, season, and holiday.
 
-```{r}
+```{r include=FALSE, warning=FALSE}
 orders$year = floor(orders$week / 52)
 orders$yearweek = orders$week %% 52
 orders$date = as.Date("2017-01-01") + orders$week * 7
@@ -54,6 +68,7 @@ orders$season = as.factor(ifelse(orders$yearweek <=4, "winter",
                        ifelse(orders$yearweek <=16, "spring",
                               ifelse(orders$yearweek <= 29, "summer",
                                      ifelse(orders$yearweek <=42, "fall", "winter")))))
+orders$web_and_mail = as.factor(orders$emailer_for_promotion * orders$homepage_featured)
 
 orders <- merge(meals, orders, by = "meal_id")
 
@@ -66,24 +81,25 @@ orders <- orders %>%
   arrange(week, center_id)
 ```
 
-## Exploratory plots
+## Exploratory analysis
 
-Explore which categories are most popular.
+The meal delivery service has 14 categories of products. The table below shows their total demand over the 145 weeks of data.
 
-```{r}
+```{r echo=FALSE}
 orders %>%
   group_by(category) %>%
   summarise(total_orders = sum(num_orders),
             n = n()) %>%
+  select(category,total_orders) %>%
   arrange(-total_orders)
 ```
 
-Show the top 10 most sold products, together with the spread of their sales in a boxplot.
+The following figure shows boxplots for the top 10 most sold items. Mean numbers of each are in the 500-1000 range, but all show high outliers.
 
-```{r}
+```{r echo=FALSE, warning=FALSE}
 orders %>%
   mutate(
-    meal_id = fct_lump(meal_id, n = 10),
+    meal_id = fct_lump(meal_id, n = 10), 
     meal_id = fct_reorder(meal_id, -num_orders)
   ) %>%
   ggplot(aes(meal_id, num_orders, color = meal_id)) +
@@ -93,42 +109,45 @@ orders %>%
   labs(x = NULL, y = "number of orders") +
   theme(legend.position = "none")
 ```
-The meal numbers aren't that informative, let's look at them in a table with their cuisine and category.
+Unfortunately meal names aren't available in the dataset, but meal numbers aren't that informative. Cuisine and category are available, corresponding meal numbers are shown in the table below.
 
-```{r}
+```{r echo=FALSE}
 orders %>%
   mutate(
     meal_id = fct_lump(meal_id, n = 10),
     meal_id = fct_reorder(meal_id, -num_orders)
   ) %>%
   select(meal_id, cuisine, category) %>%
-  filter(meal_id!="Other")
+  filter(meal_id!="Other") %>%
+  unique()
 ```
 
-Out of those 10 the Thai beverage seems like the most interesting to me. In this example I'll focus on this product.
-Explore the weekly sales of this product.
+In this demo I've focused on meal number "1962"; pizza.
 
-```{r}
-library(ggformula)
+The plot below shows the weekly sales of this meal.
+
+```{r echo=FALSE, warning=FALSE}
 orders %>%
-  filter(meal_id == "1993") %>%
+  filter(meal_id == "1962") %>%
   group_by(week) %>%
   summarize(weekly_orders = sum(num_orders)) %>%
   ungroup() %>%
   ggplot(aes(x=week, y=weekly_orders)) +
   geom_point(shape=18) +
   geom_line( color = "midnightblue") +
-  geom_spline(alpha = 0.6, color="red", size = 1.2, df = 12) +
+  geom_smooth(alpha = 0.6, color="red", size = 1.2) +
   labs(x = NULL) +
-  labs(title = "Number of orders of Thai beverage, per week", x = "Week", y = "Sales") +
+  labs(title = "Number of orders of pizza, per week", x = "Week", y = "Sales") +
   scale_y_continuous(labels = comma)
 ```
 
-The sales of this product do seem to change with the seasons. Let's explore if sales are related to promotional activities with two simple boxplots.
+The sales do seem to differ week by week. And also the pizza sales seem to increase over the weeks.
 
-```{r}
+The two boxplots below show the numbers of orders per week, for weeks with and without email or website promotion.
+
+```{r echo=FALSE}
 orders %>%
-  filter(meal_id == "1993") %>%
+  filter(meal_id == "1962") %>%
   group_by(week) %>%
   mutate(weekly_orders = sum(num_orders)) %>%
   ungroup() %>%
@@ -136,13 +155,13 @@ orders %>%
   geom_boxplot(outlier.colour = NA) +
   geom_jitter(alpha = 0.1, width = 0.15) +
   labs(x = NULL) +
-  labs(title = "Number of orders of Thai beverage, by email promotion", x = "Email promotion", y = "Sales") +
+  labs(title = "Number of orders of pizza, by email promotion", x = "Email promotion", y = "Sales") +
   scale_y_continuous(labels = comma)
 ```
 
-```{r}
+```{r echo=FALSE}
 orders %>%
-  filter(meal_id == "1993") %>%
+  filter(meal_id == "1962") %>%
   group_by(week) %>%
   mutate(weekly_orders = sum(num_orders)) %>%
   ungroup() %>%
@@ -150,22 +169,23 @@ orders %>%
   geom_boxplot(outlier.colour = NA) +
   geom_jitter(alpha = 0.1, width = 0.15) +
   labs(x = NULL) +
-  labs(title = "Number of orders of Thai beverage, by email promotion", x = "Email promotion", y = "Sales") +
+  labs(title = "Number of orders of pizza, by homepage featured", x = "Homepage featured", y = "Sales") +
   scale_y_continuous(labels = comma)
 ```
 
-There seems to be a correlation with both.
+The sales are higher in weeks with a promotion.
 
-Lastly, lets explore whether there's a regional difference.
+Finally, the plot below shows de distribution of sales over the different regions.
 
-```{r}
+```{r echo=FALSE}
 orders %>%
-  filter(meal_id == "1993") %>%
+  filter(meal_id == "1962") %>%
   ggplot(aes(region_code, num_orders, color = week)) +
   geom_boxplot(outlier.colour = NA) +
   geom_jitter(alpha = 0.1, width = 0.15) +
-  ylim(0,4e3) +
+  ylim(0,3e3) +
   labs(x = "region", y = "number of orders") +
+  labs(title = "Number of orders of pizza, by region", x = "Region", y = "Sales") +
   scale_color_viridis_c()
 ```
 
@@ -173,94 +193,99 @@ There is certainly a regional variation. Region 56 seems to be the region with t
 
 ## Selection of features
 
-For this model I'm going to focus on the Thai beverage, and forecast weekly sales based on the features:
+For this model I've focused on the pizza with meal number 1962. I've forecast weekly sales per meal center based on the following features:
+
 * Region (region_code)
 * Type of center (center_type)
-* Operational ares (op_area)
+* Operational area (op_area)
 * Checkout price (checkout_price)
 * Email promotion (emailer_for_promotion)
 * Featured on homepage (homepage_featured)
-* Winter holliday (winter_holiday)
-* Season of the year (season)
+* Interaction terms
+* week
 
-```{r}
-thaibev <- orders %>%
-  filter(meal_id == "1993") %>%
+Since the pizza sales seemed to increase over the 145 week period, I've added week as a feature. As well as interaction terms to correct for a possible disproportionate correlation between region, checkout price, email & homepage promotion.
+
+```{r include=FALSE}
+pizza <- orders %>%
+  filter(meal_id == "1962" & center_type == "TYPE_A") %>%
   select(id, date, week, year, yearweek, region_code, center_type, op_area, checkout_price,
-         emailer_for_promotion, homepage_featured, winter_holiday, season, num_orders)
+         emailer_for_promotion, homepage_featured, num_orders)
 ```
 
 ## Training the models
 
-The outcome measure is continuous, therefor the type of model I'll use is regression. I'll fit the following models:
+The outcome measure is continuous, therefor the type of model I've used are for regression. 
+
+I've fit the following models:
 
 * linear regression
 * random forest
-* boosted trees
-* boosted ARIMA
-
-I'll fit all the models and compare their fit.
+* gradient boosting
 
 ### Check if the outcome variable is normally distributed
 
-```{r}
-thaibev %>%
+```{r echo=FALSE}
+pizza %>%
   ggplot(aes(num_orders)) +
   geom_density()
 ```
 
-The outcome variable is skewed to the right, so I use a log transformation to improve this.
+The outcome variable is skewed to the right, so I've used a log transformation.
 
-```{r}
-thaibev <- thaibev %>%
+```{r include=FALSE}
+pizza <- pizza %>%
   mutate(num_orders_ln = log(num_orders))
 ```
 
-Check if the distribution has improved.
+As can be seen in the plot below, the transformed outcome variable is normally distributed.
 
-```{r}
-thaibev %>%
+```{r echo=FALSE}
+pizza %>%
   ggplot(aes(num_orders_ln)) +
   geom_density()
 ```
 
-It's satisfactory.
+### Splitting & resampling the data
 
-### Splitting the data
+Since the dataset contains a timeseries, I've split the data using time intervals.
 
-```{r}
-library(modeltime)
-library(timetk)
-library(lubridate)
-gc()
+I've chosen for a testset of the last 10 weeks, and a I've resampled the trainingset with initial and assesment intervals, of 20 and 10 weeks respectively.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+#gc()
 set.seed(888)
+pizza_split  <- pizza %>%
+  time_series_split(date_var = date, assess = "10 weeks", cumulative = TRUE)
+
+pizza_training <- training(pizza_split)
+pizza_testing <- testing(pizza_split)
+
 resamples_ts <- time_series_cv(
-    data        = thaibev,
-    assess      = "2 months",
-    initial     = "5 months",
-    skip        = "2 months",
+    data        = pizza_training,
+    assess      = "10 weeks",
+    initial     = "20 weeks",
+    skip        = "10 weeks",
     slice_limit = 25
 )
-gc()
-
-resamples_ts
-```
-### Resampling the data
-
-```{r}
-thaibev_folds <- resamples_ts
+#gc()
+pizza_folds <- resamples_ts
 
 control <- control_resamples(save_pred = TRUE)
 ```
-
 ### Setting up the models
 
-Linear Regression
+Linear Regression:
 
-```{r}
-base_rec <- recipe(num_orders_ln ~ ., data = thaibev) %>%
-  update_role(id, date, week, year, yearweek, num_orders, new_role = "id") %>%
-  step_dummy(all_nominal_predictors())
+```{r }
+base_rec <- recipe(num_orders_ln ~ ., data = pizza_training) %>%
+  update_role(id, date, year, yearweek, num_orders, center_type, new_role = "id") %>%
+  step_dummy(all_nominal_predictors()) %>%
+  step_interact( terms = ~ starts_with("home"):starts_with("checkout")) %>%
+  step_interact( terms = ~ starts_with("email"):starts_with("checkout")) %>%  
+  step_interact( terms = ~ starts_with("region"):starts_with("checkout"))
+
+names(bake(prep(base_rec, training = pizza_training), new_data = NULL))
 
 lm_spec <- linear_reg()
 
@@ -270,9 +295,9 @@ lin_wflow <-
   add_recipe(base_rec)
 ```
 
-Random forest
+Random forest:
 
-```{r}
+```{r }
 rf_spec <-
   rand_forest(trees = 1e3) %>%
   set_mode("regression") %>%
@@ -284,9 +309,9 @@ rf_wflow <-
   add_recipe(base_rec)
 ```
 
-Boosted trees
+Gradient boosting:
 
-```{r}
+```{r }
 xgb_spec <- boost_tree(
   trees = 1000, 
   tree_depth = tune(), min_n = tune(), 
@@ -305,28 +330,28 @@ xgb_wflow <-
 
 ## Fitting & tuning the models
 
-```{r}
+```{r include=FALSE}
 doParallel::registerDoParallel() 
 metrics = metric_set(rmse, rsq, ccc)
 ```
 
-Linear regression
+Linear regression:
 
-```{r}
-lin_res <- fit_resamples(lin_wflow, resamples = thaibev_folds)
+```{r }
+lin_res <- fit_resamples(lin_wflow, resamples = pizza_folds, metrics = metrics)
 collect_metrics(lin_res)
 ```
 
-Random forest
+Random forest:
 
-```{r}
-rf_res <- fit_resamples(rf_wflow, resamples = thaibev_folds)
+```{r }
+rf_res <- fit_resamples(rf_wflow, resamples = pizza_folds, metrics = metrics)
 collect_metrics(rf_res)
 ```
 
-Boosted trees
+Gradient boosting:
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 set.seed(123)
 xgb_grid <-
   grid_max_entropy(
@@ -344,26 +369,27 @@ set.seed(234)
 xgb_res <-
   tune_race_anova(
     xgb_wflow,
-    thaibev_folds,
+    pizza_folds,
     grid = xgb_grid,
     metrics = metrics,
     control = control_race(verbose_elim = TRUE)
   )
+```
 
-collect_metrics(xgb_res)
 
-xgb_param <- 
-  xgb_wflow %>% 
-  parameters() %>%
-  update(mtry=mtry(c(5L, 10L)))
+```{r }
+collect_metrics(xgb_res) %>%
+  arrange(desc(.metric),desc(mean))
+```
 
-collect_metrics(xgb_res)
 
+```{r }
 plot_race(xgb_res)
 ```
+
 ## Choosing the best model
 
-```{r}
+```{r echo=FALSE}
 best_linear <- collect_metrics(lin_res) %>%
   filter(.metric == 'rsq') %>%
   select(.metric, mean, std_err, .config) %>%
@@ -381,9 +407,11 @@ best_all <- rbind(best_linear, best_random_forest, best_xgb) %>%
   arrange(desc(mean))
 best_all
 ```
-The best results come from the xgb model. I select this model and save it to use on the testset.
+The table above shows that the best results came from the xgb (gradient boosting) model. 
 
-```{r}
+I've selected this model and saved it to use on the testset.
+
+```{r include=FALSE, message=FALSE, warning=FALSE}
 collect_metrics(xgb_res) %>%
   filter(.metric=="rsq") %>%
   arrange(desc(mean))
@@ -394,7 +422,7 @@ best_rsq
 
 ## Use the model on the testset & explore the results
 
-```{r}
+```{r include=FALSE, message=FALSE, warning=FALSE}
 final_xgb <- finalize_workflow(
   xgb_wflow,
   best_rsq
@@ -403,33 +431,40 @@ final_xgb <- finalize_workflow(
 final_xgb
 ```
 
-```{r}
+```{r include=FALSE}
 test_prediction <- final_xgb %>%
   fit(
-    data = thaibev_training
+    data = pizza_training
   ) %>%
-  predict(new_data = thaibev_testing) %>%
+  predict(new_data = pizza_testing) %>%
   mutate(exp.pred = exp(.pred)) %>%
-  bind_cols(testing(thaibev_split)) %>%
+  bind_cols(testing(pizza_split)) %>%
   mutate(perc_diff = round(abs(1-exp.pred/num_orders)*100,2),
-         bin_diff = as.factor(ifelse(perc_diff<=1,"1: <=1%",
-                                     ifelse(perc_diff<=5,"2: <=5%",
-                                            ifelse(perc_diff<=10,"3: <=10%",
-                                                   ifelse(perc_diff<=25, "4: <=25%",
-                                                    ifelse(perc_diff<=100,"5: <=100%","6: >100%")))))))
+         bin_diff = as.factor(ifelse(perc_diff<=10,"1: <=10%",
+                                     ifelse(perc_diff<=20,"2: <=20%",
+                                            ifelse(perc_diff<=34,"3: <=34%",
+                                                   ifelse(perc_diff<=50, "4: <=50%","5: >50%"))))))
+```
 
-gc()
+
+```{r echo=FALSE}
+
 test_prediction %>%
   ggplot(aes(x=exp.pred,y=num_orders, color=bin_diff)) +
-  geom_point(alpha=.3) +
+  geom_point(alpha=.6) +
   geom_abline() +
-  xlim(c(0,6000)) +
+  xlim(c(0,2500)) +
+  ylim(c(0,2500)) +
   scale_colour_viridis_d(direction=-1)
   
 ```
 
-```{r}
-gc()
+The plot above shows the predicted versus true values. It shows that extremely high sales are more difficult to predict for this model. 
+
+The plot below zooms in to a max of 1000 (true) orders a week, we see that the model performs best when the number of orders stays under 750.
+
+```{r echo=FALSE, warning=FALSE}
+#gc()
 test_prediction %>%
   ggplot(aes(x=exp.pred,y=num_orders, color=bin_diff)) +
   geom_point(alpha=.6) +
@@ -438,100 +473,98 @@ test_prediction %>%
   ylim(c(0,1000)) +
   scale_colour_viridis_d(direction=-1)
 ```
-```{r}
+
+### Predicted sales, versus true sales
+
+The table below shows the number and percentage of times the model predicted values within 10, 20, 34, 50, and over 50% of true values.
+
+```{r echo=FALSE}
 test_prediction %>%
   group_by(bin_diff) %>%
   summarise(n_in_group = n(),
             p_in_group = round(n()/nrow(test_prediction),2))
 ```
-```{r}
-weekly_test_prediction <- test_prediction %>%
-  select(week,num_orders,.pred) %>%
+
+For individual meal-centers, the model predicts the weekly number of orders to  
+
+* within 10% accuracy in 20% of cases;
+* within 20% accuracy in 39% of cases;
+* within 34% accuracy in 65% of cases.
+
+the number of times the model predicted values within 10, 20, 34, 50, and over 50% of true values.
+
+```{r include=FALSE}
+test_prediction %>%
+  filter(week > 135) %>%
   group_by(week) %>%
-  summarise(m_weekly_orders = sum(num_orders)/sum(!is.na(.pred)),
-            m_weekly_pred = sum(.pred)/sum(!is.na(.num_orders))) %>%
-  mutate(within_5p = ifelse(abs(m_weekly_orders-m_weekly_pred) < 0.05*m_weekly_orders,1,0),
-         within_10p = ifelse(abs(m_weekly_orders-m_weekly_pred) < 0.1*m_weekly_orders,1,0),
-         within_25p = ifelse(abs(m_weekly_orders-m_weekly_pred) < 0.25*m_weekly_orders,1,0),
-         within_50p = ifelse(abs(m_weekly_orders-m_weekly_pred) < 0.5*m_weekly_orders,1,0))
-
-
-weekly_test_prediction %>%
-  summarise(n=n(),
-            p_5p = sum(within_5p)/n(),
-            p_10p = sum(within_10p)/n(),
-            p_25p = sum(within_25p)/n(),
-            p_50p = sum(within_50p)/n())
-
+  summarise( weekly_total_truth = sum(num_orders),
+             weekly_total_pred = sum(exp.pred)) %>%
+  mutate(perc_diff = round(abs(1-weekly_total_truth/weekly_total_pred)*100,2),
+         bin_diff = as.factor(ifelse(perc_diff<=10,"1: <=10%",
+                                     ifelse(perc_diff<=20,"2: <=20%",
+                                            ifelse(perc_diff<=34,"3: <=34%",
+                                                   ifelse(perc_diff<=50, 
+                                                          "4: <=50%","5: >50%")))))) %>%
+  group_by(bin_diff) %>%
+  summarise(n_in_group = n(),
+            p_in_group = round(n()/nrow(.),2))
 ```
 
+For total orders per weeks of all meal-centers (type A), the model predicts the weekly number of orders to  
+ 
+* within 10% accuracy in 60% of cases;
+* within 20% accuracy in 80% of cases;
+* within 34% accuracy in 90% of cases.
 
-```{r}
+When plotted, we can see a model fit that represents the true values quite well, with the exception of weeks with extremely high sales. Then the model gives a general underestimation.
+
+```{r echo=FALSE, warning=FALSE}
 test_prediction %>%
   select(exp.pred, num_orders, week) %>%
-  mutate(min.5.perc = num_orders*.90,
-         plus.5.perc = num_orders*1.1) %>%
   pivot_longer(cols=-week) %>%
   group_by(week,name) %>%
   summarize(weekly_orders=sum(value)) %>%
+  mutate(low = weekly_orders * .85,
+         high = weekly_orders * 1.15) %>%
   ungroup() %>%
   ggplot(aes(x=week,y=weekly_orders,color=name)) +
   geom_point() +
-  geom_line()
-           
+  geom_line(size = 1.1) +
+  labs(title = "Number of orders of pizza, per week", x = "Week", y = "Sales", 
+       subtitle = "Predicted vs true values, with 15% margin") +
+  geom_ribbon(aes(ymin = low, ymax = high), alpha = 0.1, size = .1) +
+  guides(color=guide_legend(title="True / predicted")) + 
+  scale_x_continuous(breaks=seq(100,145,5))
 ```
 
 ### Most important features
 
-```{r}
+The plot below shows the most influential variables contribution to weekly sales in the model. 
+
+For predicting the weekly pizza sales for an individual center, checkout price, operational area, email promotion, the interaction of email promotion with checkout price, and week since the start of the trainingsset are most important.
+
+```{r echo=FALSE, warning=FALSE}
 library(vip)
 
-gc()
+#gc()
 final_xgb %>%
-  fit(data = thaibev_training) %>%
+  fit(data = pizza_training) %>%
   extract_fit_parsnip() %>%
-  vip(geom = "point")
+  vip(geom = "col", num_features = 5)
 ```
-### Predicted, versus the true sales
-
-```{r}
-
-```
-
-```{r}
-splits <- thaibev %>%
-  time_series_split(date_var = date, assess = "3 months", cumulative = TRUE)
-splits %>%
-  tk_time_series_cv_plan() %>%
-  plot_time_series_cv_plan(date, num_orders, .interactive = FALSE)
-
-timefolds <- training(splits) %>%
-  time_series_cv(date_var = date, assess = "3 months", cumulative = TRUE)
-
-timefolds %>%
-  plot_time_series_cv_plan(date, num_orders, .interactive = FALSE)
-
-model_fit_prophet <- prophet_reg() %>%
-  set_engine("prophet", yearly.seasonality = TRUE) %>%
-  fit(num_orders ~ date, training(splits))
-model_fit_prophet$fit
-autoplot(model_fit_prophet)
-```
-```{r}
-splits_ts <- thaibev %>%
-  time_series_split(date_var = date, assess = "2 months", cumulative = TRUE)
-
-resamples_ts <- time_series_cv(
-    data        = training(splits_ts),
-    assess      = "2 months",
-    initial     = "5 months",
-    skip        = "2 months",
-    slice_limit = 2
-)
-
-resamples_ts
-```
-
-
 
 ## Conclusion
+
+I fitted a model to predict weekly pizza sales per center. The model predicted sales within 20% difference to the true sales, in 39% of the cases. For total orders per week, of all meal centers, the model predicted values within 20% of the true sales, in 8 of the 10 weeks of the testset. Checkout price, operational area, email promotion, the interaction of email promotion with checkout price, and week since the start of the training were the most important features in the model.
+
+## Discussion
+
+We see that the model performs worse when used for individual meal centers and in case of high outliers, while on average estimated total weekly sales for all quite well. This can be the result of fitting the model to data containing high outliers, as well as fitting the model to a dataset which does not contain all important features for individual meal centers.
+
+One way of dealing with poor estimation of outliers is excluding them from the dataset. This means accepting that these types of extremely high sales cannot be predicted.
+
+Another way is adding features, which catch the special circumstances for the extremely high sales (of individual meal centers). Because likely there are special circumstances, they just weren't added as a feature to the dataset available to me.
+
+## Is this good enough?
+
+This is a valid question. In most businesses there is someone who predicts sales 'by hand'. Either based on a feeling resulting from years of experience, or based on an increase (or decrease) of last year(s)'s sales. I believe the only way to answer the question: "Is the model good enough?" Is by comparing its accuracy with the standard method now used in the company. Of course, this method is not available for this open dataset, so unfortunately this question will remain unanswered.
